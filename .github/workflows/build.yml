@@ -1,0 +1,51 @@
+name: build
+
+on:
+  push:
+    paths-ignore:
+    - '.vscode/**'
+    - '.editorconfig'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v5
+    - name: Setup node.js
+      uses: actions/setup-node@v5
+      with:
+        node-version-file: '.nvmrc'
+    - name: Prepare build environment
+      shell: bash
+      run: |
+        npm install --loglevel notice --no-progress
+    - name: Build
+      shell: bash
+      run: |
+        npm run-script "build:release" --loglevel notice --no-progress
+    - name: Archive artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: artifacts
+        path: |
+          tmp/out/bin/**.*
+    - name: Archive logs
+      if: ${{ always() }}
+      uses: actions/upload-artifact@v4
+      with:
+        name: logs
+        path: |
+          build.log
+          .tmp/npm-cache/_logs/**.log
+        retention-days: 2
+    - name: Deploy
+      uses: ticoraap/sftp-mirror@v1.6
+      if: github.ref == 'refs/heads/main'
+      with:
+        server: ${{ secrets.FTP_SERVER }}
+        port: ${{ secrets.FTP_PORT }}
+        user: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        local: ./tmp/bin/dist/
+        remote: ./www/

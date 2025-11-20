@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap');
+
+@import "tailwindcss";
+@import "flowbite/src/themes/default";
+
+@plugin "flowbite/plugin";
+@source "../../node_modules/flowbite";
+
+@plugin '@tailwindcss/typography';
+
+@theme {
+  --color-dark-tile: #222629;
+  --color-light-white: rgba(255, 255, 255, 0.5);
+  --color-light-black: rgba(0, 0, 0, 0.15);
+  --font-sans: "Source Sans 3", ui-sans-serif, sans-serif;
+  --font-monospace: 'Source Code Pro', ui-monospace, monospace;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+  width: 100%;
+}
+
+.astro-code, .astro-code span {
+  font-family: var(--font-monospace);
+}
+
+.content h2 {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.content svg {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 4px;
+}
+
+.content ul {
+  list-style-type: disc;
+}

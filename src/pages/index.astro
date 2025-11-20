@@ -1,0 +1,24 @@
+---
+import Layout from '../layouts/Layout.astro';
+import HomeSection from '../components/HomeSection.astro';
+import Sidebar from '../components/Sidebar.astro';
+
+import { getCollection } from 'astro:content';
+const sections = (await getCollection('sections')).sort((s1, s2) => s1.data.order - s2.data.order);
+const links = sections.map(s => ({
+  href: `#${s.id}`,
+  title: s.data.title,
+  icon: s.data.icon
+}));
+---
+
+<Layout>
+  <Sidebar links={links} />
+  <div class="min-h-screen min-w-80 text-neutral-700 sm:ml-80">
+    {
+      sections.map(section => (
+        <HomeSection id={section.id} bgPath={section.data['bg-path']} websites={section.data.websites} />
+      ))
+    }
+  </div>
+</Layout>

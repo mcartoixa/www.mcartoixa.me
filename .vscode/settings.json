@@ -1,13 +1,20 @@
 {
-  "files.exclude": {
-    "**/.git": true,
-    "**/.jekyll-cache": true,
-    "vendor/bundle": true
+  "editor.quickSuggestions": {
+    "strings": "on"
   },
+  "files.associations": {
+    "*.css": "tailwindcss"
+  },
+  "files.exclude": {
+    "**/.git": true
+  },
+  "files.trimTrailingWhitespace": true,
   "files.watcherExclude": {
-    "**/.git/objects/**": true,
-    "**/.git/subtree-cache/**": true,
-    "**/tmp/*/**": true,
-    "**/vendor/**": true
-  }
+    "**/.git/*/**": true,
+    "**/.tmp/*/**": true,
+    "**/node_modules/*/**": true
+  },
+  "html.autoClosingTags": true,
+  "liveServer.settings.root": "/tmp/bin/dist/",
+  "prettier.enable": true,
 }

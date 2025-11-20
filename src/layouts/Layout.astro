@@ -1,0 +1,89 @@
+---
+import type { ImageMetadata } from 'astro';
+import '../css/global.css';
+import websites from '../data/websites.json';
+import { createExcerpt } from '../utils/blog';
+
+const { title, post } = Astro.props;
+
+const images = import.meta.glob<{ default: ImageMetadata }>('/src/**/*.{jpg,png}');
+const header = (post ? (images[post.data.header] ?? images['/src/data/blog/header-mac.jpg']) : images['/src/assets/pix/avatar.png']);
+if (!header) throw new Error(`The header could not be found`);
+
+const metadata = {
+  '@context': 'https://schema.org',
+  '@type': post ? 'BlogPosting' : 'WebSite',
+  author: {
+    '@type': 'Person',
+    name: 'mcartoixa'
+  },
+  image: (await header()).default.src,
+  url: Astro.url
+};
+if (post) {
+  Object.assign(metadata, {
+    dateModified: post.data.date.toISOString(),
+    datePublished: post.data.date.toISOString(),
+    description: `${createExcerpt(post).substring(0, 200)}...`,
+    headline: post.data.title,
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `${Astro.url}.html`
+    }
+  });
+} else {
+  Object.assign(metadata, {
+    description:
+      'This is my personal website, where I try and gather all my activities on the web, be they professional or personal.',
+    headline: title || 'Mathieu Cartoixa',
+    name: 'Mathieu Cartoixa',
+    sameAs: [websites['linkedin'].url, websites['github'].url, websites['bluesky'].url]
+  });
+}
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://tinylytics.app/embed/YTpdtwVFGaXTzYyCjW1Z.js" defer></script>
+
+    <meta name="robots" content="index, follow" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{title ? `${title} | Mathieu Cartoixa` : 'Mathieu Cartoixa'}</title>
+    <meta property="og:title" content={title || 'Mathieu Cartoixa'} />
+    <meta name="author" content={metadata.author.name} />
+    <meta property="og:locale" content="en_US" />
+    <meta name="description" content={metadata.description} />
+    <meta property="og:description" content={metadata.description} />
+    <link rel="canonical" href={`${Astro.url}.html`} />
+    <meta property="og:url" content={`${Astro.url}.html`} />
+    <meta property="og:site_name" content="Mathieu Cartoixa" />
+    <meta property="og:image" content={metadata.image} />
+    <meta property="og:type" content={post ? 'article' : 'website'} />
+    {post && <meta property="article:published_time" content={metadata.datePublished} />}
+    <meta name="twitter:card" content="summary" />
+    <meta property="twitter:image" content={metadata.image} />
+    <meta property="twitter:title" content={metadata.headline} />
+    <meta name="twitter:site" content="@mcartoixa" />
+    <meta name="twitter:creator" content="@mcartoixa" />
+    <script type="application/ld+json" set:html={JSON.stringify(metadata)} />
+
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="theme-color" content="#ffffff" />
+
+    <link rel="sitemap" href="/sitemap-index.xml" />
+  </head>
+  <body class="font-sans">
+    <slot />
+    <script src="../../node_modules/flowbite/dist/flowbite.js"></script>
+  </body>
+</html>

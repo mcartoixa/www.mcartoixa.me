@@ -1,0 +1,64 @@
+---
+import { Icon } from 'astro-icon/components';
+import Logo from './Sidebar/SidebarLogo.astro';
+import Item from './Sidebar/SidebarItem.astro';
+import websites from '../data/websites.json'
+
+interface Props {
+  links: Array<object>;
+}
+
+const { links } = Astro.props;
+---
+
+<button
+  data-drawer-target="sidebar"
+  data-drawer-toggle="sidebar"
+  aria-controls="sidebar"
+  type="button"
+  class="ms-3 mt-2 inline-flex items-center rounded-lg p-2 text-sm text-gray-500 hover:bg-gray-100 focus:ring-2 focus:ring-gray-200 focus:outline-none sm:hidden dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+>
+  <span class="sr-only">Open sidebar</span>
+  <Icon name="fa7-solid:bars" />
+</button>
+
+<aside
+  id="sidebar"
+  class="fixed top-0 left-0 z-40 h-screen w-80 -translate-x-full transition-transform sm:translate-x-0"
+  aria-label="Sidebar"
+>
+  <div class="h-full overflow-y-auto bg-dark-tile p-6 flex flex-col">
+    <Logo />
+    <nav>
+      <ul>
+        <li><Item href="/" title="Home" icon="fa7-solid:home" isActive={Astro.url.pathname === '/'} /></li>
+        <li><Item href="/about/cv.html" title="CV" icon="fa7-solid:building-user" isActive={Astro.url.pathname.startsWith('/about/cv')} /></li>
+        <li><Item href="/blog" title="Blog" icon="fa7-solid:blog" isActive={Astro.url.pathname.startsWith('/blog')} /></li>
+      </ul>
+    </nav>
+    <hr class="my-8 text-gray-500" />
+    <nav>
+      <ul>
+        {
+          links?.map(l => (
+            <li>
+              <Item class="text-sm truncate" href={l.href} title={l.title} icon={l.icon} isActive={Astro.url.pathname === l.href} />
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+    <hr class="my-8 text-gray-500" />
+    <div class="flex flex-row text-2xl justify-center">
+      <a href={websites['linkedin'].url} class="text-neutral-600 hover:text-white m-2" target="_blank">
+        <Icon name={websites['linkedin'].icon} />
+      </a>
+      <a href={websites['github'].url} class="text-neutral-600 hover:text-white m-2" target="_blank">
+        <Icon name={websites['github'].icon} />
+      </a>
+      <a href={websites['bluesky'].url} class="text-neutral-600 hover:text-white m-2" target="_blank">
+        <Icon name={websites['bluesky'].icon} />
+      </a>
+    </div>
+  </div>
+</aside>

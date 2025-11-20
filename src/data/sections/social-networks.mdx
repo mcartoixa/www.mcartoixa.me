@@ -1,0 +1,50 @@
+---
+title: Social networks
+bg-path: /src/assets/pix/bg-nyc-msg.jpg
+icon: fa7-solid:comment
+order: 5
+---
+import { Icon } from 'astro-icon/components';
+import websites from '../websites.json';
+
+<center class="text-4xl">
+  <a href={websites['bluesky'].url} target="_blank">
+    <Icon name={websites['bluesky'].icon} />
+  </a>
+  <a href={websites['facebook'].url} target="_blank">
+    <Icon name={websites['facebook'].icon} />
+  </a>
+  <a href={websites['threads'].url} target="_blank">
+    <Icon name={websites['threads'].icon} />
+  </a>
+  <a href={websites['reddit'].url} target="_blank">
+    <Icon name={websites['reddit'].icon} />
+  </a>
+</center>
+<center class="text-4xl">
+  <a href={websites['youtube'].url} target="_blank">
+    <Icon name={websites['youtube'].icon} />
+  </a>
+  <a href={websites['instagram'].url} target="_blank">
+    <Icon name={websites['instagram'].icon} />
+  </a>
+</center>
+<center class="text-4xl">
+  <a href={websites['soundcloud'].url} target="_blank">
+    <Icon name={websites['soundcloud'].icon} />
+  </a>
+  <a href={websites['lastfm'].url} target="_blank">
+    <Icon name={websites['lastfm'].icon} />
+  </a>
+</center>
+<center class="text-4xl">
+  <a href={websites['goodreads'].url} target="_blank">
+    <Icon name={websites['goodreads'].icon} />
+  </a>
+  <a href={websites['untappd'].url} target="_blank">
+    <Icon name={websites['untappd'].icon} />
+  </a>
+  <a href={websites['steam'].url} target="_blank">
+    <Icon name={websites['steam'].icon} />
+  </a>
+</center>

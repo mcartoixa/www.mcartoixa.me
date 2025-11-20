@@ -1,0 +1,18 @@
+---
+title:
+  - Sr Software Architect
+organization: KDS
+url: https://web.archive.org/web/20110811045839/http://www.kds.com/
+location: Le Plessis-Robinson, France
+start: 2009-12-01
+end: 2011-08-31
+---
+import IconText from '../../../components/IconText.astro';
+
+I advocated for the development of unit tests, and helped define and enforce custom unit tests development rules (_xUnit_).
+
+I migrated the build of the main KDS application to MSBuild (from a mix of NAnt, Powershell, makefiles and batch scripts).
+
+I rationalized and automated the build of the middleware (around 60 projects amounting to about 1 million LOC of C++, Delphi and C#)(_MSBuild 3.5_, <IconText name="devicon:csharp">_C#_</IconText>). Rethought its release process and set up a continuous integration server (_CruiseControl.NET_, _Subversion_, _MSBuild_). Added various code quality checks and metrics (_FxCop_, _Cppcheck_). Developed new core libraries to base the development of new middleware components on (and possibly migrate old components over time) (<IconText name="devicon:csharp">_C# 4.0_</IconText>, _Task Parallel Library_, _sockets_).
+
+Set up a continuous integration process for the development of mobile applications (_CruiseControl.NET_, _MSBuild_, _Ant_).

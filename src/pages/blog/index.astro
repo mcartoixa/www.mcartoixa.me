@@ -1,0 +1,23 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import BlogExcerpt from '../../components/Blog/BlogExcerpt.astro';
+import Sidebar from '../../components/Sidebar.astro';
+import { createUri } from "../../utils/blog";
+
+const blogPosts = (await getCollection('blogPosts')).sort((s1, s2) => s2.data.date - s1.data.date);
+const links = blogPosts.map(p => ({
+  href: createUri(p).pathname,
+  title: p.data.title,
+  icon: 'fa7-solid:file-pen'
+}));
+---
+
+<Layout title="Blog">
+  <Sidebar links={links} />
+  <div class="min-h-screen min-w-80 text-neutral-700 sm:ml-80">
+    <div class="flex flex-col items-center">
+      {blogPosts.map(post => <BlogExcerpt id={post.id} />)}
+    </div>
+  </div>
+</Layout>

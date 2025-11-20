@@ -1,0 +1,45 @@
+---
+import { getCollection } from 'astro:content';
+import BlogArticle from '../../../../../../components/Blog/BlogArticle.astro';
+import BlogComments from '../../../../../../components/Blog/BlogComments.astro';
+import Layout from '../../../../../../layouts/Layout.astro';
+import Sidebar from '../../../../../../components/Sidebar.astro';
+import { createUri } from "../../../../../../utils/blog";
+
+export async function getStaticPaths() {
+  const blogPosts = (await getCollection('blogPosts')).sort((s1, s2) => s2.data.date - s1.data.date);
+  return blogPosts.map(post => ({
+    params: {
+      category: post.data.category,
+      day: post.data.date.getDate().toString().padStart(2, '0'),
+      month: (post.data.date.getMonth() + 1).toString().padStart(2, '0'),
+      slug: post.id.split('/').pop()?.substring(11),
+      year: post.data.date.getFullYear().toString()
+    },
+    props: {
+      post
+    }
+  }));
+}
+
+const { post } = Astro.props;
+
+const blogPosts = (await getCollection('blogPosts')).sort((s1, s2) => s2.data.date - s1.data.date);
+const links = blogPosts.map(p => ({
+  href: createUri(p).pathname,
+  title: p.data.title,
+  icon: 'fa7-solid:file-pen'
+}));
+---
+
+<Layout title={post.data.title} post={post}>
+  <Sidebar links={links} />
+  <div class="min-h-screen min-w-80 text-neutral-700 sm:ml-80">
+    <div class="flex flex-col items-center">
+      <BlogArticle id={post.id} />
+      { import.meta.env.PROD && (
+        <BlogComments id={post.id} />
+      )}
+    </div>
+  </div>
+</Layout>

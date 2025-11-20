@@ -1,0 +1,36 @@
+---
+import { getEntry, render } from 'astro:content';
+import IconText from '../IconText.astro';
+
+interface Props {
+  id: string;
+}
+const { id } = Astro.props;
+
+const entry = await getEntry('cvExperiences', id);
+if (!entry) throw new Error(`Experience "${id}" does not exist"`);
+
+const { Content } = await render(entry);
+---
+
+<style>
+  h4 {
+    border-top: 1px solid darkgray;
+    font-size: 1.2em;
+    font-weight: 400;
+    margin-top: 10px;
+    padding-top: 6px;
+  }
+</style>
+
+<div
+  class="prose max-w-none prose-p:mt-0 prose-p:mb-2 prose-p:text-base/5 prose-a:font-light prose-a:decoration-dashed prose-a:decoration-1 prose-a:decoration-gray-400"
+>
+  <h4 id={id}><IconText name="fa7-solid:briefcase">{entry.data.title.join(', ')}</IconText></h4>
+  <p>
+    <IconText name="fa7-solid:building" class="mr-2"><a href={entry.data.url} target="_blank">{entry.data.organization}</a></IconText>
+    <IconText name="fa7-solid:calendar-days" class="mr-2">{entry.data.start.toLocaleDateString('en-US', { month: 'short', year: 'numeric' })} - {entry.data.end?.toLocaleDateString('en-US', { month: 'short', year: 'numeric' }) ?? 'Now'}</IconText>
+    <IconText name={`fa7-solid:location-${entry.data.location ? 'dot' : 'pin'}`} class="mr-2">{entry.data.location ?? '(remote)'}</IconText>
+  </p>
+  <Content />
+</div>

@@ -1,0 +1,14 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import { Icon } from 'astro-icon/components';
+
+interface Props extends HTMLAttributes<'span'> {
+  name: string;
+}
+
+const { name, ...props } = Astro.props;
+---
+
+<span {...props}>
+  <span class="whitespace-nowrap"><span class="mx-1 inline-block align-middle"><Icon name={name} /></span><span class="inline-block align-baseline whitespace-normal"><slot /></span></span>
+</span>

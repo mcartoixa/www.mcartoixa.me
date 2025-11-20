@@ -1,6 +1,10 @@
 {
   "recommendations": [
-    "EditorConfig.EditorConfig",
-    "ms-vscode-remote.remote-containers"
-  ]
+    "astro-build.astro-vscode",
+    "bradlc.vscode-tailwindcss",
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "EditorConfig.EditorConfig"
+  ],
+  "unwantedRecommendations": []
 }

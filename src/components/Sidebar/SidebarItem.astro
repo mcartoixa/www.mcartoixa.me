@@ -1,0 +1,22 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import { Icon } from 'astro-icon/components';
+
+interface Props extends HTMLAttributes<'span'> {
+  href: string;
+  title: string;
+  icon: string;
+  isActive?: boolean;
+}
+
+const { href, title, icon, isActive = false, ...props } = Astro.props;
+---
+
+<a
+  href={href}
+  class="group flex items-center rounded-lg p-2 text-xl font-light hover:text-white"
+  class:list={[{ 'text-light-white': !isActive, 'text-white': isActive, 'bg-light-black': isActive }]}
+>
+  <span class="inline-block min-w-1 align-middle"><Icon name={icon} /></span>
+  <span class="align-baseline ms-3 inline-block w-full text-right whitespace-nowrap truncate"><span {...props}>{title}</span></span>
+</a>

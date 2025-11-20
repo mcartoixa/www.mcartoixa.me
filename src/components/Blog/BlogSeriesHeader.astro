@@ -1,0 +1,29 @@
+---
+import {getCollection, getEntry} from 'astro:content';
+import { createUri } from "../../utils/blog";
+
+interface Props {
+  id: string;
+}
+const { id } = Astro.props;
+
+const post = await getEntry('blogPosts', id);
+if (!post) throw new Error(`Blog post "${id}" does not exist"`);
+if (!post.data.series) throw new Error(`Blog post "${id}" is not part of a series"`);
+
+const seriesPosts = (await getCollection('blogPosts', ({ data }) => { return data.series === post.data.series; })).sort((s1, s2) => s1.data.date - s2.data.date);
+---
+
+<nav class="m-4 px-8 py-4 max-w-6xl border-1 border-dotted font-light">
+  <ol class="list-decimal">
+  {seriesPosts.map(p => (
+      <li>
+        {p.id !== id ? (
+        <a class="font-normal" href={createUri(p).pathname}>{p.data.title}</a>
+        ) : (
+        <span>{p.data.title}</span>
+        )}
+      </li>
+    ))}
+  </ol>
+</nav>
