@@ -11,9 +11,24 @@ const links = blogPosts.map(p => ({
   title: p.data.title,
   icon: 'fa7-solid:file-pen'
 }));
+
+const metadata = {
+  '@type': 'Blog',
+  '@id': `${Astro.url}.html`,
+  description: 'Mathieu Cartoixa\'s blog',
+  mainEntityOfPage: {
+    '@type': 'WebPage',
+    '@id': `${Astro.url}.html`
+  },
+  publisher: {
+    '@type': 'Person',
+    '@id': `${import.meta.env.SITE}`,
+    'name': 'Mathieu Cartoixa'
+  }
+};
 ---
 
-<Layout title="Blog">
+<Layout title="Blog" metadata={metadata}>
   <Sidebar links={links} />
   <div class="min-h-screen min-w-80 text-neutral-700 sm:ml-80">
     <div class="flex flex-col items-center">

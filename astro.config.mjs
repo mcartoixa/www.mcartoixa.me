@@ -4,6 +4,7 @@ import icon from "astro-icon";
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
+import yaml from '@rollup/plugin-yaml';
 
 // https://astro.build/config
 export default defineConfig({
@@ -17,5 +18,5 @@ export default defineConfig({
   outDir: './tmp/bin/dist',
   site: 'https://www.mcartoixa.me',
   trailingSlash: 'never',
-  vite: { plugins: [tailwindcss()], },
+  vite: { plugins: [tailwindcss(), yaml()], },
 });

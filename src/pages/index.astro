@@ -1,19 +1,34 @@
 ---
+import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
 import HomeSection from '../components/HomeSection.astro';
 import Sidebar from '../components/Sidebar.astro';
 
-import { getCollection } from 'astro:content';
+import websites from '../data/websites.json';
+import commonMetadata from '../data/metadata.json';
+
 const sections = (await getCollection('sections')).sort((s1, s2) => s1.data.order - s2.data.order);
 const links = sections.map(s => ({
   href: `#${s.id}`,
   title: s.data.title,
   icon: s.data.icon
 }));
+
+const metadata = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  author: commonMetadata.person,
+  description:
+    'This is my personal website, where I try and gather all my activities on the web, be they professional or personal.',
+  headline: 'Mathieu Cartoixa',
+  name: 'Mathieu Cartoixa',
+  url: import.meta.env.SITE,
+  sameAs: [websites['linkedin'].url, websites['github'].url, websites['bluesky'].url]
+};
 ---
 
 <Layout>
-  <Sidebar links={links} />
+  <Sidebar links={links} metadata={metadata} />
   <div class="min-h-screen min-w-80 text-neutral-700 sm:ml-80">
     {
       sections.map(section => (

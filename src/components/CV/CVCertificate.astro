@@ -1,0 +1,7 @@
+---
+interface Props {
+  certificate: object;
+}
+const { certificate } = Astro.props;
+---
+<a href={certificate.url} target="_blank">{certificate.issuer} - <span class="font-normal">{certificate.name}</span></a>

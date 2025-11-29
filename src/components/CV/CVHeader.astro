@@ -1,0 +1,10 @@
+---
+interface Props {
+  basics: object;
+}
+const { basics } = Astro.props;
+---
+<div class="bg-black p-8 text-white">
+  <h2 class="text-4xl font-semibold">{basics.name}</h2>
+  <p>{basics.label}</p>
+</div>

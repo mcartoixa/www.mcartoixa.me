@@ -1,0 +1,211 @@
+# cf. https://jsonresume.org
+basics:
+  name: Mathieu Cartoixa
+  label: Software Craftsman | Hands-on CTO
+  summary: >
+    As a technical leader or a hands-on CTO, I can help organize and improve all the components of product development,
+    from individual technical skills to team culture, in order to ensure quality, speed and scalability (of the products
+    as well as of the team). I want to grow and share my knowledge in an environment that is at the same time demanding,
+    rational and caring. I am looking for an adventure in a startup or a well-established company that is very much aware
+    of the values it carries, internally as well as to the world, that include respect and quality.
+  website: https://www.mcartoixa.me
+  url: https://www.mcartoixa.me
+  location:
+    city: Paris
+    countryCode: FR
+work:
+  - name: Air Indemnité
+    url: https://www.air-indemnite.com/
+    location: remote, France
+    position: Sr Software Architect, CTO
+    startDate: 2018-02-05
+    endDate: 2025-09-30
+    highlights:
+      - >
+        I helped Air Indemnité transition to a remote only organization by defining a new culture based around asynchronous,
+        continuous and written communication. I also set up the tools supporting it (<IconText name="devicon:slack">_Slack_</IconText>,
+        <IconText name="logos:google-drive">_Google Drive_</IconText>, <IconText name="devicon:confluence">_Confluence_</IconText>,
+        <IconText name="devicon:jira">_JIRA_</IconText>). I managed a small team of developers in a tailor-made brand of Agile Methodology
+        with mob programming, unit testing and continuous integration (and continuous delivery).
+      - >
+        I moved our web infrastructure (<IconText name="devicon:debian">_Debian_</IconText>, <IconText name="devicon:nginx">_nginx_</IconText>,
+        <IconText name="devicon:mariadb">_MariaDB_</IconText>, <IconText name="devicon:rails-wordmark">_Ruby on Rails_</IconText>) to
+        Microsoft Azure (<IconText name="devicon:azure">_Azure Container Apps_</IconText>, <IconText name="devicon:azure">_Azure Front Door_</IconText>,
+        <IconText name="devicon:docker">_Docker_</IconText>, <IconText name="devicon:mysql">_MySQL_</IconText>) to improve costs,
+        reliability and ease of deployment. I also set up Continuous Integration on all our projects (_Rake_, <IconText name="devicon:githubactions">_Github Actions_</IconText>),
+        including for our Salesforce backend (_Apache Ant_, <IconText name="devicon:salesforce">_Salesforce CLI_</IconText>).
+        I developed a new version of our main customer form in a leaner, more efficient and better tested fashion
+        (<IconText name="devicon:vuejs">_Vue.js_</IconText>, <IconText name="devicon:nodejs">_node.js_</IconText>).
+        I modelled and prototyped a new version of our information system (<IconText name="devicon:dotnetcore">_.NET Core_</IconText>,
+        <IconText name="devicon:nodejs">_node.js_</IconText>, _event sourcing_, _CQRS_) and of our web infrastructure
+        (<IconText name="devicon:astro">_Astro_</IconText>, <IconText name="devicon:nodejs">_node.js_</IconText>, <IconText name="devicon:vuejs">_Vue.js_</IconText>).
+      - >
+        I also handled the IT infrastructure for the company, in a hybrid fashion at first (_DHCP_, _DNS_, _Synology_,
+        <IconText name="devicon:windows8">_Windows Server 2012_</IconText>, <IconText name="devicon:windows8">_Windows 10_</IconText>)
+        and then in the cloud (<IconText name="devicon:google">_Google Workspace_</IconText>, <IconText name="devicon:azure">_Microsoft Entra_</IconText>).
+  - name: Isogeo
+    url: https://web.archive.org/web/20171213094703/http://www.isogeo.com/
+    location: Paris, France
+    position: Sr Software Architect, CTO
+    startDate: 2011-09-05
+    endDate: 2018-01-31
+    highlights:
+      - I managed a small team of developers (SCRUM, Kanban).
+      - >
+        I lead the design and development of Isogeo, a cataloguing platform for geospatial data centred on a RESTful API in JSON and comprised of various,
+        mainly web, applications (<IconText name="devicon:visualstudio">_Visual Studio 2015_</IconText>, <IconText name="devicon:csharp">_C#_</IconText>,
+        <IconText name="devicon:dot-net">_.NET 4.5_</IconText>, _ASP.NET WebApi 2_, _ASP.NET MVC 5_, _OWIN_,
+        <IconText name="devicon:entityframeworkcore">_Entity Framework 6_</IconText>, <IconText name="devicon:microsoftsqlserver">_SQL Server 2016_</IconText>,
+        <IconText name="devicon:javascript">_Javascript_</IconText>, <IconText name="devicon:nodejs">_node.js_</IconText>,
+        <IconText name="devicon:backbonejs">_backbone.js_</IconText>, <IconText name="devicon:oauth">_OAuth 2_</IconText>).
+        The platform was hosted on Windows Azure. I set up the continuous integration and delivery process for the project (_CruiseControl.NET_, _MSBuild_,
+        <IconText name="devicon:grunt">_grunt.js_</IconText>, <IconText name="devicon:git">_Git_</IconText>, _Web Deploy_).
+      - >
+        I designed and developed [GeoSIK](https://github.com/mcartoixa/GeoSIK), an open source library to develop and use OGC web services in .NET applications
+        (<IconText name="devicon:visualstudio">_Visual Studio 2015_</IconText>, <IconText name="devicon:csharp">_C#_</IconText>,
+        <IconText name="devicon:dot-net">_.NET 4.0_</IconText>, _LINQ_, <IconText name="devicon:microsoftsqlserver">_SQL Server 2014_</IconText>).
+        I integrated GeoSIK into Isogeo to make it provide and consume standard CSW services ([Catalog Services for the Web](https://www.ogc.org/standards/cat/)).
+      - >
+        I was in charge of the IT for the whole organization: I bought, set up and maintained servers (_DNS_, _DHCP_, _Active Directory_), workstations and laptops
+        (<IconText name="devicon:windows8">_Windows Server 2012_</IconText>, <IconText name="devicon:windows8">_Windows 10_</IconText>).
+  - name: KDS
+    url: https://web.archive.org/web/20110811045839/http://www.kds.com/
+    location: Le Plessis-Robinson, France
+    position: Sr Software Architect
+    startDate: 2009-12-01
+    endDate: 2011-08-31
+    highlights:
+      - I advocated for the development of unit tests, and helped define and enforce custom unit tests development rules (_xUnit_).
+      - I migrated the build of the main KDS application to MSBuild (from a mix of NAnt, Powershell, makefiles and batch scripts).
+      - >
+        I rationalized and automated the build of the middleware (around 60 projects amounting to about 1 million LOC of C++, Delphi and C#)
+        (_MSBuild 3.5_, <IconText name="devicon:csharp">_C#_</IconText>). Rethought its release process and set up a continuous integration server
+        (_CruiseControl.NET_, _Subversion_, _MSBuild_). Added various code quality checks and metrics (_FxCop_, _Cppcheck_). Developed new core
+        libraries to base the development of new middleware components on (and possibly migrate old components over time)
+        (<IconText name="devicon:csharp">_C# 4.0_</IconText>, _Task Parallel Library_, _sockets_).
+      - I set up a continuous integration process for the development of mobile applications (_CruiseControl.NET_, _MSBuild_, _Ant_).
+  - name: NourY Solutions
+    url: https://web.archive.org/web/20090105233246/http://www.nourysolutions.com/
+    location: Saint-Denis, France
+    position: Technical Leader
+    startDate: 2006-07-10
+    endDate: 2009-11-27
+    highlights:
+      - >
+        I designed and developed [Salamanca](https://web.archive.org/web/20210630214922/https://archive.codeplex.com/?p=salamanca),
+        an open source software factory targeting business applications on the .NET platform (<IconText name="devicon:visualstudio">_Visual Studio 2008_</IconText>).
+        This included the design and development of specific libraries, modelers and code generation templates (_SQL_,
+        <IconText name="devicon:csharp">_C#_</IconText>). I also advocated and set up corporate blogs to help communicate about Salamanca.
+      - >
+        I designed and developed information systems based on Salamanca (<IconText name="devicon:microsoftsqlserver">_Sql Server_</IconText>,
+        <IconText name="devicon:oracle">_Oracle_</IconText>, <IconText name="devicon:csharp">_C#_</IconText>, _Windows Forms_, _ASP.NET_, _WPF_).
+        I set up various development tools and processes (_FxCop_, <IconText name="devicon:subversion">_Subversion_</IconText>,
+        _Trac_, _unit testing_, _automated builds_) to improve software quality (and pave the way to complete continuous integration).
+        I also set up and managed a virtualization server (<IconText name="devicon:hyperv">_Hyper-V_</IconText>) to help us test software and installation packages.
+  - name: Quaternove
+    url: https://web.archive.org/web/20050115011016/http://www.quaternove.fr/
+    location: Levallois, France
+    position: Software Engineer
+    startDate: 2001-10-01
+    endDate: 2006-07-07
+    highlights:
+      - As a contractor, I maintained and developed software in various companies, in as many different technical environments.
+      - >
+        At Wincor-Nixdorf (ATM manufacturer), I designed, implemented and integrated a new customization system for the HMI of ATMs:
+        a web browser (<IconText name="devicon:firefox">_Mozilla 1.4_</IconText>) was to be embedded in the existing software to parse XML,
+        create and display HTML files to the user (<IconText name="devicon:cplusplus">_C++_</IconText>, _HTML 4.02_, _CSS 2.0_, _XML 1.0_,
+        <IconText name="devicon:firefox">_Mozilla 1.4_</IconText>, _RPC_).
+      - >
+        At IdRS (SERVIER, pharmaceutical laboratory), I maintained the internal Laboratory Information Management System (LIMS)
+        (<IconText name="devicon:csharp">_C#_</IconText>, <IconText name="devicon:dot-net">_.NET 1.1_</IconText>, _XML 1.0_,
+        <IconText name="devicon:oracle">_Oracle 9i_</IconText>), which was also the opportunity to discover the .NET world. After a few month
+        I have been officially designed as a &quot;.NET Expert&quot; to serve as a reference to other developers. I took the initiative to develop
+        a reusable framework destined to help the creation of Data Access Layers (DAL) in the environment of the IdRS (10+ projects each had
+        their own specific DAL, and existing commercial or free solutions where out the question for political reasons). It was successfully used
+        in 2 projects (<IconText name="devicon:csharp">_C#_</IconText>, <IconText name="devicon:dot-net">_.NET 1.1_</IconText>, _CodeSmith 2.6_,
+        _PL/SQL_, <IconText name="devicon:oracle">_Oracle 9i_</IconText>).
+certificates:
+  - name: Innovation in the Age of Disruption
+    issuer: INSEAD
+    url: https://certificate.insead.edu/3f99575a-8030-4777-a20e-7453a402b7aa#acc.pbEP2vJA
+    date: 2020-10-02
+education:
+  - institution: ENSEEIHT
+    url: https://www.enseeiht.fr/
+    location: Toulouse, France
+    area: Software engineering
+    studyType: Masters
+    diploma: Masters degree
+    startDate: 2000-09-03
+    endDate: 2001-06-29
+  - institution: École Polytechnique
+    url: https://www.polytechnique.edu/
+    location: Palaiseau, France
+    area: Engineering
+    studyType: Masters
+    diploma: Masters degree
+    startDate: 1995-09-04
+    endDate: 2001-06-29
+  - institution: Lycée Saliège
+    url: https://www.saliege.fr/
+    location: Balma, France
+    area: Physics and Mathematics
+    studyType: Classe Préparatoires aux Grandes Ecoles d’ingénieurs
+    startDate: 1992-09-06
+    endDate: 1995-06-30
+  - institution: Lycée Cendrillon
+    location: Dax, France
+    studyType: Highschool
+    diploma: Baccalauréat C
+    startDate: 1989-09-03
+    endDate: 1992-06-25
+skills:
+  - name: .NET
+    keywords:
+      - <IconText name="skill-icons:cs">C#</IconText>
+      - <IconText name="skill-icons:dotnet">ASP.NET</IconText>
+      - Windows Forms
+      - WPF
+      - Entity Framework
+      - MSBuild
+  - name: Javascript
+    keywords:
+      - <IconText name="skill-icons:javascript">Javascript</IconText>
+      - <IconText name="skill-icons:nodejs-light">node.js</IconText>
+      - <IconText name="skill-icons:vuejs-light">Vue.js</IconText>
+      - <IconText name="skill-icons:astro">Astro</IconText>
+  - name: SQL
+    keywords:
+      - SQL Server
+      - Oracle
+      - <IconText name="skill-icons:mysql-light">MySQL</IconText>
+      - <IconText name="skill-icons:postgresql-light">PostgreSQL</IconText>
+  - name: Version Control
+    keywords:
+      - <IconText name="skill-icons:git">Git</IconText>
+      - Subversion
+      - CVS
+      - Continuuus
+  - name: Continuous Integration
+    keywords:
+      - <IconText name="skill-icons:githubactions-light">Github Actions</IconText>
+      - AppVeyor
+      - Travis
+      - CruiseControl.NET
+  - name: Cloud
+    keywords:
+      - <IconText name="skill-icons:azure-light">Microsoft Azure</IconText>
+      - <IconText name="skill-icons:aws-light">AWS</IconText>
+  - name: Infrastructure
+    keywords:
+      - <IconText name="skill-icons:windows-light">Windows Server</IconText>
+      - <IconText name="skill-icons:debian-light">Debian</IconText>
+      - <IconText name="skill-icons:ubuntu-light">Ubuntu</IconText>
+      - <IconText name="skill-icons:docker">Docker</IconText>
+languages:
+  - language: French
+    code: fre
+    fluency: Native
+  - language: English
+    code: eng
+    fluency: Fluent

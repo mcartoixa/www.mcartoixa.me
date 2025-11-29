@@ -2,96 +2,115 @@
   "bluesky": {
     "name": "Bluesky",
     "icon": "fa7-brands:bluesky",
-    "url": "https://bsky.app/profile/mcartoixa.me"
+    "url": "https://bsky.app/profile/mcartoixa.me",
+    "username": "mcartoixa.me"
   },
   "dev": {
     "name": "DEV",
     "icon": "fa7-brands:dev",
-    "url": "https://dev.to/mcartoixa"
+    "url": "https://dev.to/mcartoixa",
+    "username": "mcartoixa"
   },
   "facebook": {
     "name": "Facebook",
     "icon": "fa7-brands:facebook",
-    "url": "https://www.facebook.com/mathieu.cartoixa"
+    "url": "https://www.facebook.com/mathieu.cartoixa",
+    "username": "mathieu.cartoixa"
   },
   "github": {
     "name": "GitHub",
     "icon": "fa7-brands:github",
-    "url": "https://github.com/mcartoixa"
+    "url": "https://github.com/mcartoixa",
+    "username": "mcartoixa"
   },
   "goodreads": {
     "name": "Goodreads",
     "icon": "fa7-brands:goodreads",
-    "url": "https://www.goodreads.com/user/show/8699028-mathieu"
+    "url": "https://www.goodreads.com/user/show/8699028-mathieu",
+    "username": "8699028-mathieu"
   },
   "instagram": {
     "name": "Instagram",
     "icon": "fa7-brands:instagram",
-    "url": "https://www.instagram.com/mcartoixa/"
+    "url": "https://www.instagram.com/mcartoixa/",
+    "username": "mcartoixa"
   },
   "lastfm": {
     "name": "Last.fm",
     "icon": "fa7-brands:lastfm",
-    "url": "https://www.last.fm/user/cartoixa"
+    "url": "https://www.last.fm/user/cartoixa",
+    "username": "cartoixa"
   },
   "linkedin": {
     "name": "LinkedIn",
     "icon": "fa7-brands:linkedin",
-    "url": "https://www.linkedin.com/in/cartoixa/"
+    "url": "https://www.linkedin.com/in/cartoixa/",
+    "username": "cartoixa"
   },
   "macsings-facebook": {
     "name": "Facebook",
     "icon": "fa7-brands:facebook",
-    "url": "https://www.facebook.com/macsings"
+    "url": "https://www.facebook.com/macsings",
+    "username": "macsings"
   },
   "macsings-youtube": {
     "name": "YouTube",
     "icon": "fa7-brands:youtube",
-    "url": "https://www.youtube.com/@macsings"
+    "url": "https://www.youtube.com/@macsings",
+    "username": "macsings"
   },
   "reddit": {
     "name": "Reddit",
     "icon": "fa7-brands:reddit",
-    "url": "https://www.reddit.com/user/mcartoixa"
+    "url": "https://www.reddit.com/user/mcartoixa",
+    "username": "mcartoixa"
   },
   "soundcloud": {
     "name": "Soundcloud",
     "icon": "fa7-brands:soundcloud",
-    "url": "https://soundcloud.com/mcartoixa/"
+    "url": "https://soundcloud.com/mcartoixa/",
+    "username": "mcartoixa"
   },
   "stackoverflow": {
     "name": "Stack Overflow",
     "icon": "fa7-brands:stack-overflow",
-    "url": "https://stackoverflow.com/users/8696/mac"
+    "url": "https://stackoverflow.com/users/8696/mac",
+    "username": "mac"
   },
   "steam": {
     "name": "Steam",
     "icon": "fa7-brands:steam",
-    "url": "https://steamcommunity.com/id/mcartoixa"
+    "url": "https://steamcommunity.com/id/mcartoixa",
+    "username": "mcartoixa"
   },
   "threads": {
     "name": "Threads",
     "icon": "fa7-brands:threads",
-    "url": "https://www.threads.net/@mcartoixa"
+    "url": "https://www.threads.net/@mcartoixa",
+    "username": "mcartoixa"
   },
   "untappd": {
     "name": "Untappd",
     "icon": "fa7-brands:untappd",
-    "url": "https://untappd.com/user/mcartoixa"
+    "url": "https://untappd.com/user/mcartoixa",
+    "username": "mcartoixa"
   },
   "x": {
     "name": "X",
     "icon": "fa7-brands:x-twitter",
-    "url": "https://x.com/mcartoixa"
+    "url": "https://x.com/mcartoixa",
+    "username": "mcartoixa"
   },
   "xing": {
     "name": "Xing",
     "icon": "fa7-brands:xing",
-    "url": "https://www.xing.com/profile/Mathieu_Cartoixa"
+    "url": "https://www.xing.com/profile/Mathieu_Cartoixa",
+    "username": "Mathieu_Cartoixa"
   },
   "youtube": {
     "name": "YouTube",
     "icon": "fa7-brands:youtube",
-    "url": "https://www.youtube.com/user/cartoixa"
+    "url": "https://www.youtube.com/user/cartoixa",
+    "username": "cartoixa"
   }
 }

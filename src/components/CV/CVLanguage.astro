@@ -1,0 +1,13 @@
+---
+import IconText from '../IconText.astro';
+
+const languageIcons = {
+  'fre': 'fr',
+  'eng': 'gb-ukm'
+}
+interface Props {
+  language: object;
+}
+const { language } = Astro.props;
+---
+<IconText name={`flagpack:${languageIcons[language.code]}`}><span class="font-normal">{language.language}</span> ({language.fluency.toLocaleLowerCase('en-US')})</IconText>

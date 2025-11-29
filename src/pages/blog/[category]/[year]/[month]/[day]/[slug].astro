@@ -1,10 +1,13 @@
 ---
+import type { ImageMetadata } from 'astro';
 import { getCollection } from 'astro:content';
 import BlogArticle from '../../../../../../components/Blog/BlogArticle.astro';
 import BlogComments from '../../../../../../components/Blog/BlogComments.astro';
 import Layout from '../../../../../../layouts/Layout.astro';
 import Sidebar from '../../../../../../components/Sidebar.astro';
-import { createUri } from "../../../../../../utils/blog";
+import { createExcerpt, createUri } from "../../../../../../utils/blog";
+
+import commonMetadata from '../../../../../../data/metadata.json';
 
 export async function getStaticPaths() {
   const blogPosts = (await getCollection('blogPosts')).sort((s1, s2) => s2.data.date - s1.data.date);
@@ -30,9 +33,40 @@ const links = blogPosts.map(p => ({
   title: p.data.title,
   icon: 'fa7-solid:file-pen'
 }));
+
+const images = import.meta.glob<{ default: ImageMetadata }>('/src/data/blog/**/*.{jpg,png}');
+const header = (images[post.data.header] ?? images['/src/data/blog/header-mac.jpg']);
+if (!header) throw new Error(`The header could not be found`);
+const headerSrc = (await header()).default.src;
+
+const metadata = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  '@id': `${Astro.url}.html`,
+  mainEntityOfPage: {
+    '@type': 'WebPage',
+    '@id': `${Astro.url}.html`
+  },
+  headline: post.data.title,
+  name: post.data.title,
+  description: `${createExcerpt(post).substring(0, 200)}...`,
+  datePublished: post.data.date.toISOString(),
+  dateModified: post.data.date.toISOString(),
+  author: commonMetadata.person,
+  image: {
+    '@type': 'ImageObject',
+    '@id': headerSrc,
+    url: headerSrc
+  },
+  url: `${Astro.url}.html`,
+  isPartOf: {
+    '@type': 'Blog',
+    '@id': `${import.meta.env.SITE}/blog`
+  }
+};
 ---
 
-<Layout title={post.data.title} post={post}>
+<Layout title={post.data.title} metadata={metadata}>
   <Sidebar links={links} />
   <div class="min-h-screen min-w-80 text-neutral-700 sm:ml-80">
     <div class="flex flex-col items-center">

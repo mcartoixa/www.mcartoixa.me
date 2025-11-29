@@ -1,0 +1,18 @@
+---
+import IconText from '../IconText.astro';
+
+interface Props {
+  education: Array<object>;
+  }
+const { education } = Astro.props;
+---
+<h4 class="font-normal text-xl mt-2.5 pt-1.5 border-t border-gray-300">
+  {education[0].diploma ? <IconText name="fa7-solid:graduation-cap">{education[0].diploma}</IconText> : <IconText name="fa7-solid:chalkboard-user">{education[0].studyType}</IconText>}
+</h4>
+{education.map(e => (
+  <p>
+    <IconText name="fa7-solid:school" class="mr-2">{e.url ? <a href={e.url} target="_blank">{e.institution}</a> : e.institution}</IconText>
+    <IconText name="fa7-solid:calendar-days" class="mr-2">{e.startDate.toLocaleDateString('en-US', { month: 'short', year: 'numeric' })} - {e.endDate.toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}</IconText>
+    <IconText name="fa7-solid:location-dot" class="mr-2">{e.location}</IconText>
+  </p>
+))}

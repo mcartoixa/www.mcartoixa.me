@@ -1,17 +1,42 @@
 ---
-import { getCollection } from 'astro:content';
+import { Icon } from 'astro-icon/components';
 import Layout from '../../layouts/Layout.astro';
-import CVExperience from '../../components/CV/CVExperience.astro';
-import Sidebar from '../../components/Sidebar.astro';
 import IconText from '../../components/IconText.astro';
+import Sidebar from '../../components/Sidebar.astro';
+import CVCertificate from '../../components/CV/CVCertificate.astro';
+import CVContact from '../../components/CV/CVContact.astro';
+import CVEducation from '../../components/CV/CVEducation.astro';
+import CVExperience from '../../components/CV/CVExperience.astro';
+import CVHeader from '../../components/CV/CVHeader.astro';
+import CVLanguage from '../../components/CV/CVLanguage.astro';
+import CVSkill from '../../components/CV/CVSkill.astro';
 
-import websites from '../../data/websites.json';
-const experiences = (await getCollection('cvExperiences')).sort((s1, s2) => s2.data.start - s1.data.start);
-const links = experiences.map(s => ({
-  href: `#${s.id}`,
-  title: `${s.data.title.join(', ')} (${s.data.organization})`,
+import cv from '../../data/about/cv.yaml';
+
+const links = cv.work.map((w, i) => ({
+  href: `#experience-${i}`,
+  title: `${w.position} (${w.name})`,
   icon: 'fa7-solid:building'
 }));
+
+
+const metadata = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  '@id': import.meta.env.SITE,
+  name: cv.basics.name,
+  nationality: 'France',
+  alumniOf: cv.education.map((e) => ({
+    '@type': 'CollegeOrUniversity',
+    name: e.institution,
+    address: e.location,
+    url: e.url
+  })),
+  knowsLanguage: cv.languages.map(l => ({
+    '@type': 'Language',
+    name: l.language
+  }))
+};
 ---
 
 <style>
@@ -23,19 +48,6 @@ const links = experiences.map(s => ({
     text-decoration: underline;
   }
 
-  h4 {
-    border-top: 1px solid darkgray;
-    font-size: 1.2em;
-    font-weight: 400;
-    margin-top: 10px;
-    padding-top: 6px;
-  }
-
-  p {
-    line-height: 1.2;
-    margin-bottom: 6px;
-  }
-
   @media screen {
     header {
       color: white;
@@ -44,35 +56,26 @@ const links = experiences.map(s => ({
   }
 </style>
 
-<Layout title="CV">
+<Layout title="CV" metadata={metadata}>
   <Sidebar links={links} />
+  <div class="absolute z-40 top-0 right-0 p-2 bg-white text-neutral-600">
+    <p class="text-2xl flex flex-row">
+      <a href="cv.json" class="px-1"><Icon name="devicon:json" /></a>
+      <a href="cv.txt" class="px-1"><Icon name="fa7-solid:file-alt" /></a>
+    </p>
+  </div>
 
   <div class="min-h-screen min-w-80 text-neutral-700 sm:ml-80">
-    <header>
-      <div class="bg-black p-8 text-white">
-        <h2 class="text-4xl font-semibold">Mathieu Cartoixa</h2>
-        <p>Software Craftsman | Hands-on CTO</p>
-      </div>
-    </header>
+    <header><CVHeader basics={cv.basics} /></header>
 
     <div class="flex flex-row items-stretch">
       <section class="top-0 w-100 overflow-y-auto bg-neutral-300 p-4">
         <div>
-          <h3>
-            <IconText name="fa7-solid:address-card">Contact</IconText>
-          </h3>
+          <h3><IconText name="fa7-solid:address-card">Contact</IconText></h3>
           <ul class="pl-1 font-light">
-            <li>
-              <a href={websites.linkedin.url} target="_blank"><IconText name="devicon:linkedin">cartoixa</IconText></a>
-            </li>
-            <li>
-              <a href={websites.github.url} target="_blank"><IconText name="devicon:github">mcartoixa</IconText></a>
-            </li>
-            <li>
-              <a href={websites.stackoverflow.url} target="_blank"
-                ><IconText name="devicon:stackoverflow">mac</IconText></a
-              >
-            </li>
+            {['linkedin', 'github', 'stackoverflow'].map(site => (
+              <li><CVContact site={site} /></li>
+            ))}
           </ul>
         </div>
 
@@ -82,111 +85,52 @@ const links = experiences.map(s => ({
             <li>
               <IconText name="fa7-solid:person">Human</IconText>
               <ul class="list-inside list-disc pl-2 font-light">
-                <li>Thoroughness</li>
-                <li>Organization</li>
-                <li>Creativity</li>
-                <li>Asynchronous communication</li>
+                <li><span class="font-normal">Thoroughness</span></li>
+                <li><span class="font-normal">Organization</span></li>
+                <li><span class="font-normal">Creativity</span></li>
+                <li><span class="font-normal">Asynchronous communication</span></li>
               </ul>
             </li>
             <li>
               <IconText name="fa7-solid:screwdriver-wrench">Technical</IconText>
               <ul class="list-inside list-disc pl-2 font-light">
-                <li>
-                  .NET (<IconText name="skill-icons:dotnet">.NET</IconText>, <IconText name="skill-icons:cs"
-                    >C#</IconText
-                  >)
-                </li>
-                <li>
-                  Javascript (<IconText name="skill-icons:javascript">Javascript</IconText>, <IconText
-                    name="skill-icons:nodejs-light">node.js</IconText
-                  >, <IconText name="skill-icons:vuejs-light">Vue.js</IconText>)
-                </li>
-                <li>SQL (SQL Server, Oracle, <IconText name="skill-icons:mysql-light">MySQL</IconText>)</li>
-                <li>Version Control (<IconText name="skill-icons:git">Git</IconText>)</li>
-                <li>
-                  Continuous Integration (<IconText name="skill-icons:githubactions-light">Github Actions</IconText>)
-                </li>
-                <li>
-                  Cloud (<IconText name="skill-icons:azure-light">Microsoft Azure</IconText>, <IconText
-                    name="skill-icons:aws-light">AWS</IconText
-                  >)
-                </li>
-                <li>
-                  Infrastructure (<IconText name="skill-icons:windows-light">Windows Server</IconText>, <IconText
-                    name="skill-icons:debian-light">Debian</IconText
-                  >, <IconText name="skill-icons:ubuntu-light">Ubuntu</IconText>, <IconText name="skill-icons:docker"
-                    >Docker</IconText
-                  >)
-                </li>
+                {cv.skills.map(skill => (
+                  <li><CVSkill skill={skill} /></li>
+                ))}
               </ul>
             </li>
           </ul>
         </div>
 
         <div>
-          <h3><IconText name="fa7-solid:award">Certifications</IconText></h3>
+          <h3><IconText name="fa7-solid:award">Certificates</IconText></h3>
           <ul class="pl-1 font-light">
-            <li>
-              <a href="https://certificate.insead.edu/3f99575a-8030-4777-a20e-7453a402b7aa#acc.pbEP2vJA" target="_blank"
-                >INSEAD - Innovation in the Age of Disruption</a
-              >
-            </li>
+            {cv.certificates.map(certificate => (
+              <li><CVCertificate certificate={certificate} /></li>
+            ))}
           </ul>
         </div>
 
         <div>
           <h3><IconText name="fa7-solid:language">Languages</IconText></h3>
           <ul class="pl-1 font-light">
-            <li><IconText name="flagpack:fr">French (native)</IconText></li>
-            <li><IconText name="flagpack:gb-ukm">English</IconText></li>
+            {cv.languages.map(language => (
+              <li><CVLanguage language={language} /></li>
+            ))}
           </ul>
         </div>
       </section>
 
       <main class="w-full p-4 font-light">
         <h3><IconText name="fa7-solid:briefcase">Experience</IconText></h3>
-
-        {experiences.map(experience => <CVExperience id={experience.id} />)}
+        {cv.work.map((work, i) => (
+          <CVExperience id=`experience-${i}` work={work} />
+        ))}
 
         <h3><IconText name="fa7-solid:chalkboard-user">Education</IconText></h3>
-
-        <h4><IconText name="fa7-solid:graduation-cap">Masters degree</IconText></h4>
-        <p>
-          <IconText name="fa7-solid:school" class="mr-2"
-            ><a href="https://www.polytechnique.edu/" target="_blank">École polytechnique</a></IconText
-          ><IconText name="fa7-solid:calendar-days" class="mr-2">Sep 1995 - Jun 2001</IconText><IconText
-            name="fa7-solid:location-dot"
-            class="mr-2">Palaiseau, France</IconText
-          >
-        </p>
-        <p>
-          <IconText name="fa7-solid:school" class="mr-2"
-            ><a href="https://www.enseeiht.fr/" target="_blank">ENSEEIHT</a></IconText
-          ><IconText name="fa7-solid:calendar-days" class="mr-2">Sep 2000 - Jun 2001</IconText><IconText
-            name="fa7-solid:location-dot"
-            class="mr-2">Toulouse, France</IconText
-          >
-        </p>
-
-        <h4>
-          <IconText name="fa7-solid:chalkboard-user">Classe Préparatoires aux Grandes Ecoles d’ingénieurs</IconText>
-        </h4>
-        <p>
-          <IconText name="fa7-solid:school" class="mr-2"
-            ><a href="https://www.saliege.fr/" target="_blank">Lycée Saliège</a></IconText
-          ><IconText name="fa7-solid:calendar-days" class="mr-2">Sep 1992 - Jun 1995</IconText><IconText
-            name="fa7-solid:location-dot"
-            class="mr-2">Balma, France</IconText
-          >
-        </p>
-
-        <h4><IconText name="fa7-solid:graduation-cap">Baccalauréat C</IconText></h4>
-        <p>
-          <IconText name="fa7-solid:school" class="mr-2">Lycée Cendrillon</IconText><IconText
-            name="fa7-solid:calendar-days"
-            class="mr-2">Sep 1989 - Jun 1992</IconText
-          ><IconText name="fa7-solid:location-dot" class="mr-2">Dax, France</IconText>
-        </p>
+        {Object.entries(Object.groupBy(cv.education, ({ studyType }) => studyType)).map((e) => (
+          <CVEducation education={e[1]} />
+        ))}
       </main>
     </div>
   </div>

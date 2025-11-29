@@ -11,11 +11,8 @@ const blogPosts = defineCollection({
     series: z.string().optional()
   })
 });
-const cvExperiences = defineCollection({
-  loader: glob({ pattern: "experience-*.{md,mdx}", base: "./src/data/about/cv" }),
-});
 const sections = defineCollection({
   loader: glob({ pattern: "*.{md,mdx}", base: "./src/data/sections" }),
 });
 
-export const collections = { blogPosts, cvExperiences, sections };
+export const collections = { blogPosts, sections };

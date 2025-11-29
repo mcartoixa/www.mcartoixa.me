@@ -1,0 +1,13 @@
+---
+import IconText from '../IconText.astro';
+
+import websites from '../../data/websites.json';
+
+interface Props {
+  site: string;
+}
+const { site } = Astro.props;
+---
+<div>
+  <a href={websites[site].url} target="_blank"><IconText name={`devicon:${site}`}><span class="font-normal">{websites[site].username}</span></IconText></a>
+</div>

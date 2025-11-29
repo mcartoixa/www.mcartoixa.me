@@ -1,0 +1,10 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
+interface Props extends HTMLAttributes<'p'> {}
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const { ...props } = Astro.props;
+---
+<slot />
