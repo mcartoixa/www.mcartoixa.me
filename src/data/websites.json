@@ -11,6 +11,12 @@
     "url": "https://dev.to/mcartoixa",
     "username": "mcartoixa"
   },
+  "docker": {
+    "name": "Docker Hub",
+    "icon": "fa7-brands:docker",
+    "url": "https://hub.docker.com/u/mcartoixa",
+    "username": "mcartoixa"
+  },
   "facebook": {
     "name": "Facebook",
     "icon": "fa7-brands:facebook",
@@ -23,11 +29,23 @@
     "url": "https://github.com/mcartoixa",
     "username": "mcartoixa"
   },
+  "gitlab": {
+    "name": "GitLab",
+    "icon": "fa7-brands:gitlab",
+    "url": "https://gitlab.com/mcartoixa",
+    "username": "mcartoixa"
+  },
   "goodreads": {
     "name": "Goodreads",
     "icon": "fa7-brands:goodreads",
     "url": "https://www.goodreads.com/user/show/8699028-mathieu",
     "username": "8699028-mathieu"
+  },
+  "huggingface": {
+    "name": "Hugging Face",
+    "icon": "",
+    "url": "https://huggingface.co/mcartoixa",
+    "username": "mcartoixa"
   },
   "instagram": {
     "name": "Instagram",
@@ -59,10 +77,40 @@
     "url": "https://www.youtube.com/@macsings",
     "username": "macsings"
   },
+  "microsoft-learn": {
+    "name": "Microsoft Learn",
+    "icon": "fa7-brands:microsoft",
+    "url": "https://learn.microsoft.com/en-us/users/mcartoixa/",
+    "username": "mcartoixa"
+  },
+  "npm": {
+    "name": "npm",
+    "icon": "fa7-brands:npm",
+    "url": "https://www.npmjs.com/~mcartoixa",
+    "username": "mcartoixa"
+  },
+  "nuget": {
+    "name": "NuGet",
+    "icon": "file-icons:nuget",
+    "url": "https://www.nuget.org/profiles/mcartoixa",
+    "username": "mcartoixa"
+  },
+  "openhub": {
+    "name": "Open Hub",
+    "icon": "fa7-solid:globe",
+    "url": "https://openhub.net/accounts/mcartoixa",
+    "username": "mcartoixa"
+  },
   "reddit": {
     "name": "Reddit",
     "icon": "fa7-brands:reddit",
     "url": "https://www.reddit.com/user/mcartoixa",
+    "username": "mcartoixa"
+  },
+  "salesforce-trailblazer": {
+    "name": "Salesforce Trailblazer",
+    "icon": "fa7-brands:salesforce",
+    "url": "https://www.salesforce.com/trailblazer/mcartoixa",
     "username": "mcartoixa"
   },
   "soundcloud": {

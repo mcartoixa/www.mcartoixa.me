@@ -32,7 +32,7 @@ export async function GET() {
   Object.assign(ret, sanitize(cv, options));
 
   if (!ret.basics.profiles) { ret.basics.profiles = []; }
-  for (const site of ['linkedin', 'github', 'stackoverflow']) {
+  for (const site of ['dev', 'github', 'gitlab', 'huggingface', 'linkedin', 'microsoft-learn', 'npm', 'nuget', 'openhub', 'salesforce-trailblazer', 'stackoverflow', 'xing']) {
     ret.basics.profiles.push({
       network: websites[site].name,
       username: websites[site].username,

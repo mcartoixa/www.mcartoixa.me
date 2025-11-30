@@ -19,5 +19,12 @@ export default defineConfig({
   outDir: './tmp/bin/dist',
   site: 'https://www.mcartoixa.me',
   trailingSlash: 'never',
-  vite: { plugins: [tailwindcss(), yaml()], },
+  vite: {
+    plugins: [tailwindcss(), yaml()],
+    server: {
+      watch: {
+        ignored: ['**/.tmp/**/*', '**/tmp/**/*']
+      }
+    }
+  }
 });

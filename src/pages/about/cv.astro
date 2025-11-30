@@ -61,7 +61,7 @@ Object.assign(metadata, {
     '@type': 'Language',
     name: l.language
   })),
-  sameAs: ['dev', 'github', 'linkedin', 'stackoverflow', 'xing'].map(w => websites[w].url)
+  sameAs: ['dev', 'github', 'gitlab', 'huggingface', 'linkedin', 'microsoft-learn', 'npm', 'nuget', 'openhub', 'salesforce-trailblazer', 'stackoverflow', 'xing'].map(w => websites[w].url)
 });
 metadata.alumniOf.push(cv.education.map((e) => ({
   '@type': 'OrganizationRole',
@@ -111,7 +111,7 @@ metadata.alumniOf.push(cv.education.map((e) => ({
         <div>
           <h3><IconText name="fa7-solid:address-card">Contact</IconText></h3>
           <ul class="pl-1 font-light">
-            {['linkedin', 'github', 'stackoverflow'].map(site => (
+            {['linkedin', 'github', 'dev'].map(site => (
               <li><CVContact site={site} /></li>
             ))}
           </ul>
