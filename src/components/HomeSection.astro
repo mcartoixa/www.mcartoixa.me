@@ -26,10 +26,10 @@ if (!images[bgPath]) throw new Error(`"${bgPath}" does not exist"`);
     alt={id}
     class="absolute top-0 left-0 -z-1 h-full w-full object-cover object-center brightness-50"
   />
-  <div class="flex flex-row">
+  <div class="flex flex-col lg:flex-row">
     {
       websites?.map(website => (
-        <div class="m-4 min-w-80 text-center" class:list={[{'w-1/2': websites.length === 2, 'w-1/3': websites.length >= 3}]}>
+        <div class="m-4 min-w-80 text-center" class:list={[{'lg:w-1/2': websites.length === 2, 'lg:w-1/3': websites.length >= 3}]}>
           <HomeSectionItem website={website} />
         </div>
       ))
