@@ -16,6 +16,15 @@ jobs:
       uses: actions/setup-node@v5
       with:
         node-version-file: '.nvmrc'
+    - name: Get npm cache directory
+      id: npm-cache-dir
+      shell: bash
+      run: echo "dir=$(npm config get cache)" >> ${GITHUB_OUTPUT}
+    - name: Cache dependencies
+      uses: actions/cache@v4
+      with:
+        path: ${{ steps.npm-cache-dir.outputs.dir }}
+        key: npm-${{ hashFiles('package.json') }}
     - name: Prepare build environment
       shell: bash
       run: |
