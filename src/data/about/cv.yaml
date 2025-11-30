@@ -44,7 +44,8 @@ work:
         <IconText name="devicon:windows8">_Windows Server 2012_</IconText>, <IconText name="devicon:windows8">_Windows 10_</IconText>)
         and then in the cloud (<IconText name="devicon:google">_Google Workspace_</IconText>, <IconText name="devicon:azure">_Microsoft Entra_</IconText>).
   - name: Isogeo
-    url: https://web.archive.org/web/20171213094703/http://www.isogeo.com/
+#    url: https://web.archive.org/web/20171213094703/http://www.isogeo.com/
+    url: https://www.isogeo.com/
     location: Paris, France
     position: Sr Software Architect, CTO
     startDate: 2011-09-05
@@ -185,7 +186,7 @@ skills:
       - <IconText name="skill-icons:git">Git</IconText>
       - Subversion
       - CVS
-      - Continuuus
+      - Continuus
   - name: Continuous Integration
     keywords:
       - <IconText name="skill-icons:githubactions-light">Github Actions</IconText>

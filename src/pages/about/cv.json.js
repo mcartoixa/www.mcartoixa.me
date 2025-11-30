@@ -1,5 +1,5 @@
 import { Response } from 'node-fetch-native';
-import { convert } from "html-to-text";
+import { convert } from 'html-to-text';
 
 import cv from '../../data/about/cv.yaml';
 import websites from '../../data/websites.json'

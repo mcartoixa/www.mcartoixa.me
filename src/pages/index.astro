@@ -23,12 +23,12 @@ const metadata = {
   headline: 'Mathieu Cartoixa',
   name: 'Mathieu Cartoixa',
   url: import.meta.env.SITE,
-  sameAs: [websites['linkedin'].url, websites['github'].url, websites['bluesky'].url]
+  sameAs: Object.entries(websites).map(e => e[1].url)
 };
 ---
 
-<Layout>
-  <Sidebar links={links} metadata={metadata} />
+<Layout metadata={metadata}>
+  <Sidebar links={links} />
   <div class="min-h-screen min-w-80 text-neutral-700 sm:ml-80">
     {
       sections.map(section => (

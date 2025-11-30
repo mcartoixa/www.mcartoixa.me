@@ -22,7 +22,7 @@ const pageMetadata = [{
 }];
 if (metadata) {
   if (metadata['@type'] === 'WebPage') {
-    Object.assign(pageMetadata, metadata);
+    Object.assign(pageMetadata[0], metadata);
   } else {
     pageMetadata.push(metadata);
     if (metadata.description) {

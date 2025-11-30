@@ -1,5 +1,6 @@
 ---
 import { Icon } from 'astro-icon/components';
+import { convert } from 'html-to-text';
 import Layout from '../../layouts/Layout.astro';
 import IconText from '../../components/IconText.astro';
 import Sidebar from '../../components/Sidebar.astro';
@@ -12,6 +13,8 @@ import CVLanguage from '../../components/CV/CVLanguage.astro';
 import CVSkill from '../../components/CV/CVSkill.astro';
 
 import cv from '../../data/about/cv.yaml';
+import commonMetadata from '../../data/metadata.json';
+import websites from '../../data/websites.json';
 
 const links = cv.work.map((w, i) => ({
   href: `#experience-${i}`,
@@ -19,24 +22,59 @@ const links = cv.work.map((w, i) => ({
   icon: 'fa7-solid:building'
 }));
 
-
-const metadata = {
+const convertOptions = {
+  wordwrap: null,
+  selectors: [
+    { selector: "IconText", format: "skip" },
+  ],
+};
+const metadata = commonMetadata.person;
+Object.assign(metadata, {
   '@context': 'https://schema.org',
   '@type': 'Person',
   '@id': import.meta.env.SITE,
   name: cv.basics.name,
   nationality: 'France',
-  alumniOf: cv.education.map((e) => ({
-    '@type': 'CollegeOrUniversity',
-    name: e.institution,
-    address: e.location,
-    url: e.url
+  jobTitle: cv.basics.label,
+  alumniOf: cv.work.map(w => ({
+    '@type': 'EmployeeRole',
+    roleName: w.position,
+    alumniOf: {
+      '@type': 'Organization',
+      name: w.name,
+      address: w.location,
+      url: w.url,
+      sameAs: !w.url?.includes('web.archive.org') ? w.url : undefined
+    },
+    startDate: w.startDate.toISOString().substring(0, 10),
+    endDate: w.endDate?.toISOString()?.substring(0, 10)
   })),
+  hasCertification: cv.certificates.map(c => ({
+    '@type': 'Certification',
+    name: c.name,
+    issuedBy: c.issuer,
+    datePublished: c.date,
+    url: c.url
+  })),
+  skills: Array.from(new Set(cv.skills.flatMap(s => [s.name, ...s.keywords]).map(k => convert(k, convertOptions)))),
   knowsLanguage: cv.languages.map(l => ({
     '@type': 'Language',
     name: l.language
-  }))
-};
+  })),
+  sameAs: ['dev', 'github', 'linkedin', 'stackoverflow', 'xing'].map(w => websites[w].url)
+});
+metadata.alumniOf.push(cv.education.map((e) => ({
+  '@type': 'OrganizationRole',
+  alumniOf: {
+    '@type': 'CollegeOrUniversity',
+    name: e.institution,
+    address: e.location,
+    url: e.url,
+    sameAs: !e.url?.includes('web.archive.org') ? e.url : undefined
+  },
+  startDate: e.startDate.toISOString().substring(0, 10),
+  endDate: e.endDate?.toISOString()?.substring(0, 10)
+})));
 ---
 
 <style>
