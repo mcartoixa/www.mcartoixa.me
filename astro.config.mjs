@@ -2,6 +2,7 @@
 import { defineConfig } from 'astro/config';
 import icon from "astro-icon";
 import mdx from '@astrojs/mdx';
+import robots from 'astro-robots-txt';
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 import yaml from '@rollup/plugin-yaml';
@@ -13,7 +14,7 @@ export default defineConfig({
     format: 'preserve'
   },
   cacheDir: '.tmp/astro-cache',
-  integrations: [icon(), mdx(), sitemap()],
+  integrations: [icon(), mdx(), robots(), sitemap()],
   output: 'static',
   outDir: './tmp/bin/dist',
   site: 'https://www.mcartoixa.me',
