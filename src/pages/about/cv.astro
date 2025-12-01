@@ -28,8 +28,7 @@ const convertOptions = {
     { selector: "IconText", format: "skip" },
   ],
 };
-const metadata = commonMetadata.person;
-Object.assign(metadata, {
+const metadata = Object.assign({}, commonMetadata.person, {
   '@context': 'https://schema.org',
   '@type': 'Person',
   '@id': import.meta.env.SITE,
@@ -53,7 +52,7 @@ Object.assign(metadata, {
     '@type': 'Certification',
     name: c.name,
     issuedBy: c.issuer,
-    datePublished: c.date,
+    datePublished: c.date?.toISOString()?.substring(0, 10),
     url: c.url
   })),
   skills: Array.from(new Set(cv.skills.flatMap(s => [s.name, ...s.keywords]).map(k => convert(k, convertOptions)))),

@@ -37,7 +37,7 @@ const links = blogPosts.map(p => ({
 const images = import.meta.glob<{ default: ImageMetadata }>('/src/data/blog/**/*.{jpg,png}');
 const header = (images[post.data.header] ?? images['/src/data/blog/header-mac.jpg']);
 if (!header) throw new Error(`The header could not be found`);
-const headerSrc = (await header()).default.src;
+const headerSrc = new URL((await header()).default.src, import.meta.env.SITE).toString();
 
 const metadata = {
   '@context': 'https://schema.org',

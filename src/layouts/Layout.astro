@@ -8,7 +8,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/pix/*.{
 const header = images['/src/assets/pix/avatar.png'];
 if (!header) throw new Error(`The header could not be found`);
 
-const pageMetadata = [{
+const genericMetadata = {
   '@context': 'https://schema.org',
   '@type': 'WebPage',
   author: {
@@ -17,9 +17,10 @@ const pageMetadata = [{
   },
   headline: title || 'Mathieu Cartoixa',
   name: 'Mathieu Cartoixa',
-  image: (await header()).default.src,
-  url: Astro.url
-}];
+  image: new URL((await header()).default.src, import.meta.env.SITE).toString(),
+  url: Astro.url.pathname !== '/' ? `${Astro.url}.html` : Astro.url
+};
+const pageMetadata = [Object.assign({}, genericMetadata)];
 if (metadata) {
   if (metadata['@type'] === 'WebPage') {
     Object.assign(pageMetadata[0], metadata);
