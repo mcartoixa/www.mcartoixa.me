@@ -29,7 +29,7 @@ const metadata = {
 
 <Layout metadata={metadata}>
   <Sidebar links={links} />
-  <div class="min-h-screen min-w-80 text-neutral-700 sm:ml-80">
+  <div class="min-h-screen min-w-80 text-neutral-700 not-print:sm:ml-80">
     {
       sections.map(section => (
         <HomeSection id={section.id} bgPath={section.data['bg-path']} websites={section.data.websites} />
