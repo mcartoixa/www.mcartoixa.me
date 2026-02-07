@@ -28,11 +28,8 @@ const metadata = {
 };
 ---
 
-<Layout title="Blog" metadata={metadata}>
-  <Sidebar links={links} />
-  <div class="min-h-screen min-w-80 text-neutral-700 not-print:sm:ml-80">
-    <div class="flex flex-col items-center">
-      {blogPosts.map(post => <BlogExcerpt id={post.id} />)}
-    </div>
+<Layout title="Blog" metadata={metadata} links={links}>
+  <div class="flex flex-col items-center">
+    {blogPosts.map(post => <BlogExcerpt id={post.id} />)}
   </div>
 </Layout>

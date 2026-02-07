@@ -66,14 +66,11 @@ const metadata = {
 };
 ---
 
-<Layout title={post.data.title} metadata={metadata}>
-  <Sidebar links={links} />
-  <div class="min-h-screen min-w-80 text-neutral-700 not-print:sm:ml-80">
-    <div class="flex flex-col items-center">
-      <BlogArticle id={post.id} />
-      { import.meta.env.PROD && (
-        <BlogComments id={post.id} />
-      )}
-    </div>
+<Layout title={post.data.title} metadata={metadata} links={links}>
+  <div class="flex flex-col items-center">
+    <BlogArticle id={post.id} />
+    { import.meta.env.PROD && (
+      <BlogComments id={post.id} />
+    )}
   </div>
 </Layout>

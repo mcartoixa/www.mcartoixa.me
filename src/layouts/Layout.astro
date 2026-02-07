@@ -1,8 +1,15 @@
 ---
 import type { ImageMetadata } from 'astro';
 import '../css/global.css';
+import Sidebar from '../components/Sidebar.astro';
+import HomeSection from '../components/HomeSection.astro';
 
-const { title, metadata } = Astro.props;
+interface Props {
+  title: string,
+  metadata: object,
+  links: Array<object>;
+}
+const { title, metadata, links } = Astro.props;
 
 const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/pix/*.{jpg,png}');
 const header = images['/src/assets/pix/avatar.png'];
@@ -84,8 +91,12 @@ if (metadata) {
 
     <link rel="sitemap" href="/sitemap-index.xml" />
   </head>
+
   <body class="font-sans">
-    <slot />
+    <Sidebar links={links} />
+    <div class="min-h-screen min-w-80 text-neutral-700 not-print:sm:ml-80">
+      <slot />
+    </div>
     <script src="../../node_modules/flowbite/dist/flowbite.js"></script>
   </body>
 </html>
