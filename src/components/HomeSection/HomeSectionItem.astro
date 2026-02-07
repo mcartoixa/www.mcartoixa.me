@@ -16,7 +16,7 @@ if (!images[imageUrl]) throw new Error(`"${imageUrl}" does not exist"`);
 ---
 
 <a href={websites[website].url} target="_blank">
-  <Image src={images[imageUrl]()} alt={websites[website].name} />
+  <Image class="w-full" src={images[imageUrl]()} alt={websites[website].name} />
   <h3 class="bg-white p-4">
     <span class="inline-block align-middle"><Icon name={websites[website].icon} class="mr-2" /></span>
     <span class="inline-block align-middle">{websites[website].name}</span>
