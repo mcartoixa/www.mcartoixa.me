@@ -112,12 +112,8 @@ work:
     highlights:
       - As a contractor, I maintained and developed software in various companies, in as many different technical environments.
       - >
-        At Wincor-Nixdorf (ATM manufacturer), I designed, implemented and integrated a new customization system for the HMI of ATMs:
-        a web browser (<IconText name="devicon:firefox">_Mozilla 1.4_</IconText>) was to be embedded in the existing software to parse XML,
-        create and display HTML files to the user (<IconText name="devicon:cplusplus">_C++_</IconText>, _HTML 4.02_, _CSS 2.0_, _XML 1.0_,
-        <IconText name="devicon:firefox">_Mozilla 1.4_</IconText>, _RPC_).
-      - >
-        At IdRS (SERVIER, pharmaceutical laboratory), I maintained the internal Laboratory Information Management System (LIMS)
+        At the [Institut de Recherches Servier](https://web.archive.org/web/20060716071830/http://www.servier.fr/) (pharmaceutical laboratory),
+        I maintained the internal Laboratory Information Management System (LIMS)
         (<IconText name="devicon:csharp">_C#_</IconText>, <IconText name="devicon:dot-net">_.NET 1.1_</IconText>, _XML 1.0_,
         <IconText name="devicon:oracle">_Oracle 9i_</IconText>), which was also the opportunity to discover the .NET world. After a few month
         I have been officially designed as a &quot;.NET Expert&quot; to serve as a reference to other developers. I took the initiative to develop
@@ -125,6 +121,19 @@ work:
         their own specific DAL, and existing commercial or free solutions where out the question for political reasons). It was successfully used
         in 2 projects (<IconText name="devicon:csharp">_C#_</IconText>, <IconText name="devicon:dot-net">_.NET 1.1_</IconText>, _CodeSmith 2.6_,
         _PL/SQL_, <IconText name="devicon:oracle">_Oracle 9i_</IconText>).
+      - >
+        At the [Commissariat à l'Energie Atomique](https://web.archive.org/web/20041031074356/https://www.cea.fr/) (public research organization)
+        I helped develop a system destined to transfer seismologic data in a worldwide database network (<IconText name="devicon:cplusplus">_C++_</IconText>,
+        _wxWidgets 2.4.2_, _XML 1.0_, <IconText name="devicon:oracle">_Oracle 8i_</IconText>).
+      - >
+        At [Wincor-Nixdorf](https://web.archive.org/web/20040204155357/http://www.wincor-nixdorf.com/internet/index.html) (ATM manufacturer),
+        I designed, implemented and integrated a new customization system for the HMI of ATMs:
+        a web browser (<IconText name="devicon:firefox">_Mozilla 1.4_</IconText>) was to be embedded in the existing software to parse XML,
+        create and display HTML files to the user (<IconText name="devicon:cplusplus">_C++_</IconText>, _HTML 4.02_, _CSS 2.0_, _XML 1.0_,
+        <IconText name="devicon:firefox">_Mozilla 1.4_</IconText>, _RPC_). I also implemented a secure key exchange protocol (RSA) between ATMs
+        and bank servers in the software embedded in ATMs and I upgraded the bank server part in our bank server simulator to support the new protocol
+        (_C_, <IconText name="devicon:cplusplus">_C++_</IconText>, <IconText name="devicon:java">_Java 1.4_</IconText>, _RSA cryptography_).
+
 certificates:
   - name: Innovation in the Age of Disruption
     issuer: INSEAD
