@@ -2,7 +2,6 @@
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import BlogExcerpt from '../../components/Blog/BlogExcerpt.astro';
-import Sidebar from '../../components/Sidebar.astro';
 import { createUri } from "../../utils/blog";
 
 const blogPosts = (await getCollection('blogPosts')).sort((s1, s2) => s2.data.date - s1.data.date);

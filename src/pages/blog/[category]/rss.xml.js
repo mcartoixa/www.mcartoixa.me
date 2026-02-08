@@ -1,6 +1,6 @@
 import rss from '@astrojs/rss';
 import { getCollection } from 'astro:content';
-import { createExcerpt, createUri } from '../../../utils/blog.js';
+import { createUri, createHtmlContent } from '../../../utils/blog.js';
 
 export async function getStaticPaths() {
   const blogCategories = Array.from(new Set((await getCollection('blogPosts')).map((p) => p.data.category)));
@@ -15,7 +15,7 @@ export async function GET(context) {
   const blogPosts = (await getCollection('blogPosts', ({ data }) => { return data.category === context.params.category; })).sort((s1, s2) => s2.data.date - s1.data.date);
   return rss({
     title: 'Mathieu Cartoixa',
-    description: 'Mathieu Cartoixa\'s blog',
+    description: "Mathieu Cartoixa's blog",
     site: context.site,
     xmlns: {
       atom: 'http://www.w3.org/2005/Atom'
@@ -24,7 +24,7 @@ export async function GET(context) {
     items: blogPosts.map(post => ({
       title: post.data.title,
       pubDate: post.data.date,
-      description: `${createExcerpt(post).substring(0, 500)}...`,
+      description: `<![CDATA[${createHtmlContent(post)}]]>`,
       link: createUri(post).toString()
     }))
   });

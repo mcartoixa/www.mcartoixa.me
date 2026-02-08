@@ -5,18 +5,22 @@ import { convert } from "html-to-text";
 const parser = new MarkdownIt();
 
 // https://chenhuijing.com/blog/creating-excerpts-in-astro/
-export const createExcerpt = (post) => {
+export const createExcerpt = post => {
   const html = parser.render(post.body);
   const options = {
     wordwrap: null,
     selectors: [
-      { selector: "a", options: { ignoreHref: true } },
-      { selector: "img", format: "skip" },
-      { selector: "figure", format: "skip" },
-    ],
+      { selector: 'a', options: { ignoreHref: true } },
+      { selector: 'img', format: 'skip' },
+      { selector: 'figure', format: 'skip' }
+    ]
   };
   const text = convert(html, options);
   return convert(text, options);
+};
+
+export const createHtmlContent = post => {
+  return parser.render(post.body);
 };
 
 export const createUri = (post) => {
