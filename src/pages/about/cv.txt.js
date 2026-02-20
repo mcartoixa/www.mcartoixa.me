@@ -36,27 +36,27 @@ ${resume.basics.summary}
 
 EXPERIENCE
 ${resume.work
-    .map(
-      (job) => `
+  .map(
+    job => `
 ${job.position} - ${job.name}
 ${job.startDate} to ${job.endDate || 'Present'}
-${job.summary ?? ''}${job.highlights?.map((h) => `• ${h}`).join('\n')}
+${job.summary ?? ''}${job.highlights?.map(h => `• ${h}`).join('\n')}
 `
-    )
-    .join('\n')}
+  )
+  .join('\n')}
 
 EDUCATION
 ${resume.education
-    .map(
-      (edu) => `
-${edu.studyType} in ${edu.area}
+  .map(
+    edu => `
+${edu.studyType}${edu.area ? ` in ${edu.area}` : ''}
 ${edu.institution}, ${edu.startDate} - ${edu.endDate}
 `
-    )
-    .join('\n')}
+  )
+  .join('\n')}
 
 SKILLS
-${resume.skills.map((s) => s.name).join(', ')}
+${resume.skills.map(s => s.name).join(', ')}
   `.trim();
 
   return new Response(ret, {

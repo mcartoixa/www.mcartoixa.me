@@ -28,6 +28,7 @@ jobs:
     - name: Prepare build environment
       shell: bash
       run: |
+        source .build/setenv.sh
         npm install --loglevel notice --no-progress
     - name: Build
       shell: bash

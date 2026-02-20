@@ -26,6 +26,12 @@ ECHO.
 
 CALL :SetLocalEnvHelper 2>nul
 
+IF NOT EXIST "%CD%\.tmp\cloc.exe" (
+    IF NOT EXIST .tmp MKDIR .tmp
+    powershell.exe -NoLogo -NonInteractive -NoProfile -ExecutionPolicy ByPass -Command "& { [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; Invoke-WebRequest https://github.com/AlDanial/cloc/releases/download/v$Env:_CLOC_VERSION/cloc-$Env:_CLOC_VERSION.exe -OutFile .tmp\cloc.exe; }"
+    IF ERRORLEVEL 1 GOTO ERROR_CLOC
+)
+
 IF EXIST "%NodeJsHomePath%nodevars.bat" (
     :: Regular  installation
     CALL "%NodeJsHomePath%nodevars.bat"
@@ -55,8 +61,8 @@ EXIT /B 0
 
 
 :SetVersionsEnvHelper
-IF EXIST build\versions.env (
-    FOR /F "eol=# tokens=1* delims==" %%i IN (build\versions.env) DO (
+IF EXIST .build\versions.env (
+    FOR /F "eol=# tokens=1* delims==" %%i IN (.build\versions.env) DO (
         SET "%%i=%%j"
         ECHO SET %%i=%%j
     )

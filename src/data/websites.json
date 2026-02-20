@@ -43,7 +43,7 @@
   },
   "huggingface": {
     "name": "Hugging Face",
-    "icon": "",
+    "icon": "fa7-brands:hugging-face",
     "url": "https://huggingface.co/mcartoixa",
     "username": "mcartoixa"
   },

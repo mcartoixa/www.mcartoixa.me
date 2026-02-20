@@ -17,6 +17,8 @@ module.exports = function (grunt) {
     },
     exec: {
       'analyze-eslint': 'eslint .',
+      'analyze-cloc-nix': 'perl .tmp/cloc.pl --3 --progress-rate=0 --xml --exclude-dir=.astro,.tmp,node_modules,tmp --out tmp/cloc-results.xml .',
+      'analyze-cloc-win': '.tmp\\cloc.exe --3 --progress-rate=0 --xml --exclude-dir=.astro,.tmp,node_modules,tmp --out tmp\\cloc-results.xml .',
       'compile-astro': 'astro build',
       'package-msdeploy-win': `msdeploy.exe -verb:sync -source:contentPath=${path.resolve('./tmp/bin/dist')} -dest:package=${path.resolve('./tmp/out/bin/package.zip')} -replace:objectName=path,match="${rexcape(path.resolve('./tmp/bin/dist'))}",replace="C:\\inetpub\\<%= package.name %>\\"`,
       'prepare-astro': 'astro sync',
@@ -30,11 +32,23 @@ module.exports = function (grunt) {
     },
   });
 
+  grunt.registerTask('analyze:cloc', () => {
+    if (process.platform === 'win32') {
+      grunt.task.run('exec:analyze-cloc-win');
+    } else {
+      grunt.task.run('exec:analyze-cloc-nix');
+    }
+  });
+
   grunt.registerTask('package:msdeploy', () => {
     if (process.platform === 'win32') grunt.task.run('exec:package-msdeploy-win');
   });
 
-  grunt.registerTask('analyze', ['run-once:prepare', 'exec:analyze-eslint']);
+  grunt.registerTask('analyze', [
+    'run-once:prepare',
+    'exec:analyze-eslint',
+    'analyze:cloc'
+  ]);
   // clean already exists...
   grunt.registerTask('clean-do', [
     'run-once:prepare',

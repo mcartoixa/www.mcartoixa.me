@@ -1,0 +1,11 @@
+---
+import { Markdown } from 'astro-remote';
+import IconText from '../IconText.astro';
+import PassthroughParagraph from '../PassthroughParagraph.astro';
+
+interface Props {
+  interest: object;
+}
+const { interest } = Astro.props;
+---
+<span class="font-normal">{interest.name}</span> (<Markdown content={interest.keywords.join(', ')} sanitize={{allowComponents: true}} components={{p: PassthroughParagraph, IconText}} />)

@@ -8,6 +8,7 @@ import CVContact from '../../components/CV/CVContact.astro';
 import CVEducation from '../../components/CV/CVEducation.astro';
 import CVExperience from '../../components/CV/CVExperience.astro';
 import CVHeader from '../../components/CV/CVHeader.astro';
+import CVInterest from '../../components/CV/CVInterest.astro';
 import CVLanguage from '../../components/CV/CVLanguage.astro';
 import CVSkill from '../../components/CV/CVSkill.astro';
 
@@ -144,6 +145,15 @@ metadata.alumniOf.push(cv.education.map((e) => ({
         <ul class="pl-1 font-light">
           {cv.certificates.map(certificate => (
             <li><CVCertificate certificate={certificate} /></li>
+          ))}
+        </ul>
+      </div>
+
+      <div>
+        <h3><IconText name="fa7-solid:guitar">Interests</IconText></h3>
+        <ul class="pl-1 font-light">
+          {cv.interests.map(interest => (
+            <li><CVInterest interest={interest} /></li>
           ))}
         </ul>
       </div>

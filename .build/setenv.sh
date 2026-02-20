@@ -36,6 +36,10 @@ esac
 
 if [ ! -d .tmp ]; then mkdir .tmp; fi
 
+if [ ! -f $(pwd)/.tmp/cloc.pl ]; then
+    wget -nv $_wget_interactive_options -O .tmp/cloc.pl https://github.com/AlDanial/cloc/releases/download/v$_CLOC_VERSION/cloc-$_CLOC_VERSION.pl
+fi
+
 
 
 if [ -f ./.env ]; then
