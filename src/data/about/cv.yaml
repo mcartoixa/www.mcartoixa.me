@@ -14,14 +14,6 @@ basics:
     city: Paris
     countryCode: FR
 work:
-  - name: Vocalcom
-    url: https://www.vocalcom.com/
-    location: Courbevoie, France
-    position: Sr Software Engineer
-    startDate: 2026-02-16
-    highlights:
-      - >
-        .
   - name: Air Indemnité
     url: https://www.air-indemnite.com/
     location: remote, France
