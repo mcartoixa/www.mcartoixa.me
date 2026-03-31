@@ -1,8 +1,16 @@
 import { URL } from "url";
 import MarkdownIt from "markdown-it";
+import replaceLinkPlugin from 'markdown-it-replace-link';;
 import { convert } from "html-to-text";
 
-const parser = new MarkdownIt();
+const dateStartRegex = /^\.\/(\d{4})/;
+const parser = new MarkdownIt().use(replaceLinkPlugin, {
+  processHTML: true,
+  replaceLink: function (link, env, token) {
+    if (token?.tag === 'img') return `/assets/images/${dateStartRegex.test(link) ? dateStartRegex.exec(link)[1].concat('/', link.substring(2)) : link}`;
+    return link;
+  }
+});
 
 // https://chenhuijing.com/blog/creating-excerpts-in-astro/
 export const createExcerpt = post => {

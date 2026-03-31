@@ -59,7 +59,7 @@ if (metadata) {
     <link rel="canonical" href={`${Astro.url}.html`} />
     <meta property="og:url" content={`${Astro.url}.html`} />
     <meta property="og:site_name" content="Mathieu Cartoixa" />
-    <meta property="og:image" content={pageMetadata[0].image} />
+    <meta property="og:image" content={pageMetadata[0].image.url} />
     {(pageMetadata.length > 1 && pageMetadata[1]['@type'] === 'BlogPosting') && (
       <meta property="og:type" content="article" />
       <meta property="article:published_time" content={pageMetadata[1]?.datePublished} />
@@ -73,7 +73,7 @@ if (metadata) {
       <meta property="og:description" content={pageMetadata[0].description} />
     )}
     <meta name="twitter:card" content="summary" />
-    <meta property="twitter:image" content={pageMetadata[0].image} />
+    <meta property="twitter:image" content={pageMetadata[0].image.url} />
     <meta property="twitter:title" content={pageMetadata[0].headline} />
     <meta name="twitter:site" content="@mcartoixa" />
     <meta name="twitter:creator" content="@mcartoixa" />
