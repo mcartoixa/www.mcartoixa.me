@@ -21,9 +21,15 @@ work:
     startDate: 2026-02-16
     highlights:
       - >
-        .
+        I set up the basis of asynchronous communication to help smooth up communication and break down silos (<IconText name="logos:microsoft-teams">_Microsoft Teams_</IconText>,
+        <IconText name="devicon:confluence">_Confluence_</IconText>).
+      - >
+        I created a new service to transcribe, summarize and qualify client calls using AI services. These results where
+        then shown to the agents to help them wrap up the calls more efficiently (<IconText name="devicon:visualstudio">_Visual Studio 2026_</IconText>,
+        <IconText name="devicon:dotnetcore">_.NET 10_</IconText>, <IconText name="devicon:csharp">_C#_</IconText>, MSBuild, <IconText name="devicon:docker">_Docker_</IconText>,
+        <IconText name="devicon:react">_React_</IconText>, <IconText name="devicon:gitlab">_GitLab_</IconText>, <IconText name="logos:claude-icon">_Claude Code_</IconText>).
   - name: Air Indemnité
-    url: https://www.air-indemnite.com/
+    url: https://web.archive.org/web/20250806060656/https://www.air-indemnite.com/
     location: remote, France
     position: Sr Software Architect, CTO
     startDate: 2018-02-05
@@ -192,6 +198,7 @@ skills:
       - <IconText name="skill-icons:typescript">Typescript</IconText>
       - <IconText name="skill-icons:nodejs-light">node.js</IconText>
       - <IconText name="skill-icons:vuejs-light">Vue.js</IconText>
+      - <IconText name="skill-icons:react-light">React</IconText>
       - <IconText name="skill-icons:astro">Astro</IconText>
   - name: SQL
     level: Expert
@@ -201,6 +208,10 @@ skills:
       - MariaDB
       - <IconText name="skill-icons:mysql-light">MySQL</IconText>
       - <IconText name="skill-icons:postgresql-light">PostgreSQL</IconText>
+  - name: AI
+    level: Proficient
+    keywords:
+      - Claude Code
   - name: Version Control
     level: Master
     keywords:
@@ -212,6 +223,7 @@ skills:
     level: Master
     keywords:
       - <IconText name="skill-icons:githubactions-light">Github Actions</IconText>
+      - <IconText name="skill-icons:gitlab-light">GitLab pipelines</IconText>
       - AppVeyor
       - Travis
       - CruiseControl.NET
