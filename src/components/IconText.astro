@@ -9,6 +9,4 @@ interface Props extends HTMLAttributes<'span'> {
 const { name, ...props } = Astro.props;
 ---
 
-<span {...props}>
-  <span class="whitespace-nowrap"><span class="mx-1 inline-block align-middle"><Icon name={name} /></span><span class="inline-block align-baseline whitespace-normal"><slot /></span></span>
-</span>
+<span {...props}><span class="whitespace-nowrap"><span class="mx-[1px] inline-block align-[-3px]"><Icon name={name} /></span><span class="ml-[2px] inline-block align-baseline whitespace-normal"><slot /></span></span></span>
