@@ -26,8 +26,9 @@ work:
       - >
         I created a new service to transcribe, summarize and qualify client calls using AI services. These results where
         then shown to the agents to help them wrap up the calls more efficiently (<IconText name="devicon:visualstudio">_Visual Studio 2026_</IconText>,
-        <IconText name="devicon:dotnetcore">_.NET 10_</IconText>, <IconText name="devicon:csharp">_C#_</IconText>, MSBuild, <IconText name="devicon:docker">_Docker_</IconText>,
-        <IconText name="devicon:react">_React_</IconText>, <IconText name="devicon:gitlab">_GitLab_</IconText>, <IconText name="logos:claude-icon">_Claude Code_</IconText>).
+        <IconText name="devicon:dotnetcore">_.NET 10_</IconText>, <IconText name="devicon:csharp">_C#_</IconText>, <IconText name="devicon:typescript">_TypeScript_</IconText>,
+        <IconText name="devicon:react">_React_</IconText>, _gRPC_, _MSBuild_, <IconText name="devicon:docker">_Docker_</IconText>,
+        <IconText name="devicon:gitlab">_GitLab_</IconText>, <IconText name="logos:claude-icon">_Claude Code_</IconText>).
   - name: Air Indemnité
     url: https://web.archive.org/web/20250806060656/https://www.air-indemnite.com/
     location: remote, France
