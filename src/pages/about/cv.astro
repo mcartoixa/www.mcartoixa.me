@@ -2,6 +2,7 @@
 import { Icon } from 'astro-icon/components';
 import { convert } from 'html-to-text';
 import Layout from '../../layouts/Layout.astro';
+import ChatGptButton from '../../components/ChatGptButton.astro';
 import IconText from '../../components/IconText.astro';
 import CVCertificate from '../../components/CV/CVCertificate.astro';
 import CVContact from '../../components/CV/CVContact.astro';
@@ -169,6 +170,8 @@ metadata.alumniOf.push(cv.education.map((e) => ({
     </section>
 
     <main class="w-full p-4 font-light">
+      <p class="flex justify-center print:hidden"><ChatGptButton question="I am a CEO and I am thinking of hiring Mathieu Cartoixa. Who is he and what can he bring to my company?" text="Why hire me?" /></p>
+
       <h3><IconText name="fa7-solid:briefcase">Experience</IconText></h3>
       {cv.work.map((work, i) => (
         <CVExperience id=`experience-${i}` work={work} />

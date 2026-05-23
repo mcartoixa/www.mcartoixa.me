@@ -1,0 +1,25 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import { Icon } from 'astro-icon/components';
+
+interface Props extends HTMLAttributes<'span'> {
+  text: string;
+  question: string;
+}
+
+const { text, question, ...props } = Astro.props;
+let questionUrl = "https://chatgpt.com/?q=".concat(encodeURIComponent(question));
+---
+
+<span {...props}>
+  <a
+    class="text-white bg-[#191919] hover:bg-[#191919]/90 focus:ring-4 focus:outline-none focus:ring-[#191919]/50 box-border border border-transparent font-medium leading-5 rounded-xl text-sm px-4 py-2.5 text-center inline-flex items-center dark:hover:bg-[#212121] dark:focus:ring-[#212121]/55"
+    data-tinylytics-event="ai.question"
+    data-tinylytics-event-value={text}
+    href={questionUrl}
+    target="_blank"
+  >
+    <span class="text-3xl ml-2 mr-1"><Icon name="fa7-brands:openai" /></span>
+    <span class="text-lg ml-1 mr-2">{text}</span>
+  </a>
+</span>
