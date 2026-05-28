@@ -3,7 +3,7 @@ import js from '@eslint/js';
 import tseslint from "typescript-eslint";
 import pluginAstro from 'eslint-plugin-astro';
 
-import { includeIgnoreFile } from '@eslint/compat';
+import { includeIgnoreFile } from '@eslint/config-helpers';
 import { fileURLToPath, URL } from 'node:url';
 
 const gitIgnorePath = fileURLToPath(new URL('.gitignore', import.meta.url));
