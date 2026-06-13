@@ -35,6 +35,9 @@ export default defineConfig({
       }),
       yaml()
     ],
+    resolve: {
+      tsconfigPaths: true,
+    },
     server: {
       watch: {
         ignored: ['**/.tmp/**/*', '**/tmp/**/*']

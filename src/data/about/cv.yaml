@@ -19,6 +19,7 @@ work:
     location: Courbevoie, France
     position: Sr Software Engineer
     startDate: 2026-02-16
+    endDate: 2026-06-15
     highlights:
       - >
         I set up the basis of asynchronous communication to help smooth up communication and break down silos (<IconText name="logos:microsoft-teams">_Microsoft Teams_</IconText>,
