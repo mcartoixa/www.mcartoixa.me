@@ -36,7 +36,8 @@ export default defineConfig({
       yaml()
     ],
     resolve: {
-      tsconfigPaths: true,
+      // @ts-expect-error Required when Vite 8 is hoisted (cf. https://github.com/withastro/astro/issues/16542#issuecomment-4580242593)
+      tsconfigPaths: true
     },
     server: {
       watch: {

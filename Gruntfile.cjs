@@ -19,6 +19,7 @@ module.exports = function (grunt) {
       }
     },
     exec: {
+      'analyze-astro': 'astro-check --minimumFailingSeverity warning',
       'analyze-eslint': 'eslint .',
       'analyze-cloc-nix': 'perl .tmp/cloc.pl --3 --progress-rate=0 --xml --exclude-dir=.astro,.tmp,node_modules,tmp --out tmp/cloc-results.xml .',
       'analyze-cloc-win': '.tmp\\cloc.exe --3 --progress-rate=0 --xml --exclude-dir=.astro,.tmp,node_modules,tmp --out tmp\\cloc-results.xml .',
@@ -50,6 +51,7 @@ module.exports = function (grunt) {
   grunt.registerTask('analyze', [
     'run-once:prepare',
     'exec:analyze-eslint',
+    'exec:analyze-astro',
     'analyze:cloc'
   ]);
   // clean already exists...

@@ -1,10 +1,11 @@
 ---
 import { Markdown } from 'astro-remote';
 import IconText from '../IconText.astro';
+import type { CvWork } from '../../types';
 
 interface Props {
   id: string
-  work: object;
+  work: CvWork;
 }
 const { id, work } = Astro.props;
 ---

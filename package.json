@@ -4,9 +4,8 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "dev": "astro dev",
+    "astro": "astro",
     "build": "astro build",
-    "check": "astro check",
     "build:analyze": "grunt analyze",
     "build:build": "grunt build",
     "build:clean": "grunt clean-do",
@@ -16,8 +15,10 @@
     "build:rebuild": "grunt rebuild",
     "build:release": "grunt release",
     "build:test": "grunt test",
-    "preview": "astro preview",
-    "astro": "astro"
+    "check": "astro check",
+    "dev": "astro dev",
+    "lint": "eslint .",
+    "preview": "astro preview"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.9",

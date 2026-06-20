@@ -3,7 +3,9 @@ import type { ImageMetadata } from 'astro';
 import { Image } from 'astro:assets';
 import { Icon } from 'astro-icon/components';
 
-import websites from '../../data/websites.json';
+import websitesData from '../../data/websites.json';
+import type { Website } from '../../types';
+const websites = websitesData as Record<string, Website>;
 
 interface Props {
   website: string;

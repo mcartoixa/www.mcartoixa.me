@@ -4,7 +4,7 @@ import Layout from '../../layouts/Layout.astro';
 import BlogExcerpt from '../../components/Blog/BlogExcerpt.astro';
 import { createUri } from "../../utils/blog";
 
-const blogPosts = (await getCollection('blogPosts')).sort((s1, s2) => s2.data.date - s1.data.date);
+const blogPosts = (await getCollection('blogPosts')).sort((s1, s2) => s2.data.date.getTime() - s1.data.date.getTime());
 const links = blogPosts.map(p => ({
   href: createUri(p).pathname,
   title: p.data.title,

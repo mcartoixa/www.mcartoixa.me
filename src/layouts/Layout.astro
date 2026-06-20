@@ -1,12 +1,13 @@
 ---
 import type { ImageMetadata } from 'astro';
+import type { NavLink, StructuredData } from '../types';
 import '../css/global.css';
 import Sidebar from '../components/Sidebar.astro';
 
 interface Props {
-  title: string,
-  metadata: object,
-  links: Array<object>;
+  title?: string,
+  metadata: StructuredData,
+  links: NavLink[];
 }
 const { title, metadata, links } = Astro.props;
 
@@ -23,10 +24,13 @@ const genericMetadata = {
   },
   headline: title || 'Mathieu Cartoixa',
   name: 'Mathieu Cartoixa',
-  image: new URL((await header()).default.src, import.meta.env.SITE).toString(),
+  image: {
+    '@type': 'ImageObject',
+    url: new URL((await header()).default.src, import.meta.env.SITE).toString()
+  },
   url: Astro.url
 };
-const pageMetadata = [Object.assign({}, genericMetadata)];
+const pageMetadata: StructuredData[] = [Object.assign({}, genericMetadata)];
 if (metadata) {
   if (metadata['@type'] === 'WebPage') {
     Object.assign(pageMetadata[0], metadata);
@@ -45,7 +49,7 @@ if (metadata) {
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <script src="https://tinylytics.app/embed/YTpdtwVFGaXTzYyCjW1Z.js?events" defer></script>
+    <script is:inline src="https://tinylytics.app/embed/YTpdtwVFGaXTzYyCjW1Z.js?events" defer></script>
 
     <meta name="robots" content="index, follow" />
     <meta charset="UTF-8" />
@@ -77,7 +81,7 @@ if (metadata) {
     <meta property="twitter:title" content={pageMetadata[0].headline} />
     <meta name="twitter:site" content="@mcartoixa" />
     <meta name="twitter:creator" content="@mcartoixa" />
-    <script type="application/ld+json" set:html={JSON.stringify(pageMetadata)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(pageMetadata)} />
 
     <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />

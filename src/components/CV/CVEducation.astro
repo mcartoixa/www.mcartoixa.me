@@ -1,8 +1,9 @@
 ---
 import IconText from '../IconText.astro';
+import type { CvEducation } from '../../types';
 
 interface Props {
-  education: Array<object>;
+  education: CvEducation[];
   }
 const { education } = Astro.props;
 ---

@@ -12,10 +12,14 @@ import CVHeader from '../../components/CV/CVHeader.astro';
 import CVInterest from '../../components/CV/CVInterest.astro';
 import CVLanguage from '../../components/CV/CVLanguage.astro';
 import CVSkill from '../../components/CV/CVSkill.astro';
+import type { Cv, StructuredData, Website } from '../../types';
 
-import cv from '../../data/about/cv.yaml';
+import cvData from '../../data/about/cv.yaml';
 import commonMetadata from '../../data/metadata.json';
-import websites from '../../data/websites.json';
+import websitesData from '../../data/websites.json';
+
+const cv = cvData as Cv;
+const websites = websitesData as Record<string, Website>;
 
 const links = cv.work.map((w, i) => ({
   href: `#experience-${i}`,
@@ -29,7 +33,7 @@ const convertOptions = {
     { selector: "IconText", format: "skip" },
   ],
 };
-const metadata = Object.assign({}, commonMetadata.person, {
+const metadata: StructuredData = Object.assign({}, commonMetadata.person, {
   '@context': 'https://schema.org',
   '@type': 'Person',
   '@id': import.meta.env.SITE,
@@ -63,7 +67,7 @@ const metadata = Object.assign({}, commonMetadata.person, {
   })),
   sameAs: ['dev', 'github', 'gitlab', 'huggingface', 'linkedin', 'microsoft-learn', 'npm', 'nuget', 'openhub', 'salesforce-trailblazer', 'stackoverflow', 'xing'].map(w => websites[w].url)
 });
-metadata.alumniOf.push(cv.education.map((e) => ({
+metadata.alumniOf.push(...cv.education.map((e) => ({
   '@type': 'OrganizationRole',
   alumniOf: {
     '@type': 'CollegeOrUniversity',
@@ -179,7 +183,7 @@ metadata.alumniOf.push(cv.education.map((e) => ({
 
       <h3><IconText name="fa7-solid:chalkboard-user">Education</IconText></h3>
       {Object.entries(Object.groupBy(cv.education, ({ studyType }) => studyType)).map((e) => (
-        <CVEducation education={e[1]} />
+        <CVEducation education={e[1]!} />
       ))}
     </main>
   </div>

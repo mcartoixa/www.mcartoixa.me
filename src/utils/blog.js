@@ -6,7 +6,7 @@ import { convert } from "html-to-text";
 const dateStartRegex = /^\.\/(\d{4})/;
 const parser = new MarkdownIt().use(replaceLinkPlugin, {
   processHTML: true,
-  replaceLink: function (link, env, token) {
+  replaceLink: function (link, _env, token) {
     if (token?.tag === 'img') return `/assets/images/${dateStartRegex.test(link) ? dateStartRegex.exec(link)[1].concat('/', link.substring(2)) : link}`;
     return link;
   }

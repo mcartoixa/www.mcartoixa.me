@@ -1,12 +1,13 @@
 ---
 import IconText from '../IconText.astro';
+import type { CvLanguage } from '../../types';
 
-const languageIcons = {
+const languageIcons: Record<string, string> = {
   'fre': 'fr',
   'eng': 'gb-ukm'
 }
 interface Props {
-  language: object;
+  language: CvLanguage;
 }
 const { language } = Astro.props;
 ---

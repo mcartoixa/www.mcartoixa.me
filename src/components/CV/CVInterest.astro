@@ -2,9 +2,10 @@
 import { Markdown } from 'astro-remote';
 import IconText from '../IconText.astro';
 import PassthroughParagraph from '../PassthroughParagraph.astro';
+import type { CvInterest } from '../../types';
 
 interface Props {
-  interest: object;
+  interest: CvInterest;
 }
 const { interest } = Astro.props;
 ---

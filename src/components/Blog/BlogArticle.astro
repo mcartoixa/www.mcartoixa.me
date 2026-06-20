@@ -14,7 +14,7 @@ if (!post) throw new Error(`Blog post "${id}" does not exist"`);
 const { Content } = await render(post);
 
 const images = import.meta.glob<{ default: ImageMetadata }>('/src/data/blog/**/*.{jpg,png}');
-const header = images[post.data.header] ?? images['/src/data/blog/header-mac.jpg'];
+const header = images[post.data.header ?? '/src/data/blog/header-mac.jpg'] ?? images['/src/data/blog/header-mac.jpg'];
 ---
 
 <article class="m-4 max-w-6xl">

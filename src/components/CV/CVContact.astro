@@ -1,14 +1,16 @@
 ---
 import IconText from '../IconText.astro';
+import type { Website } from '../../types';
 
-import websites from '../../data/websites.json';
+import websitesData from '../../data/websites.json';
+const websites = websitesData as Record<string, Website>;
 
 interface Props {
   site: string;
 }
 const { site } = Astro.props;
 
-const icons = {
+const icons: Record<string, string> = {
   'dev': 'skill-icons:devto-dark',
   'huggingface': 'logos:hugging-face-icon',
   'microsoft-learn': 'logos:microsoft-icon',

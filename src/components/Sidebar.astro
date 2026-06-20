@@ -3,9 +3,10 @@ import { Icon } from 'astro-icon/components';
 import Logo from './Sidebar/SidebarLogo.astro';
 import Item from './Sidebar/SidebarItem.astro';
 import websites from '../data/websites.json'
+import type { NavLink } from '../types';
 
 interface Props {
-  links: Array<object>;
+  links: NavLink[];
 }
 const { links } = Astro.props;
 ---

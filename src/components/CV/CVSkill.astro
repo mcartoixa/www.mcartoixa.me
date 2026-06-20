@@ -2,9 +2,10 @@
 import { Markdown } from 'astro-remote';
 import IconText from '../IconText.astro';
 import PassthroughParagraph from '../PassthroughParagraph.astro';
+import type { CvSkill } from '../../types';
 
 interface Props {
-  skill: object;
+  skill: CvSkill;
 }
 const { skill } = Astro.props;
 ---

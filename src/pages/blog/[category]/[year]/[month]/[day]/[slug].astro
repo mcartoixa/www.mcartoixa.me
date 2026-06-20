@@ -9,7 +9,7 @@ import { createExcerpt, createUri } from "../../../../../../utils/blog";
 import commonMetadata from '../../../../../../data/metadata.json';
 
 export async function getStaticPaths() {
-  const blogPosts = (await getCollection('blogPosts')).sort((s1, s2) => s2.data.date - s1.data.date);
+  const blogPosts = (await getCollection('blogPosts')).sort((s1, s2) => s2.data.date.getTime() - s1.data.date.getTime());
   return blogPosts.map(post => ({
     params: {
       category: post.data.category,
@@ -26,7 +26,7 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 
-const blogPosts = (await getCollection('blogPosts')).sort((s1, s2) => s2.data.date - s1.data.date);
+const blogPosts = (await getCollection('blogPosts')).sort((s1, s2) => s2.data.date.getTime() - s1.data.date.getTime());
 const links = blogPosts.map(p => ({
   href: createUri(p).pathname,
   title: p.data.title,
