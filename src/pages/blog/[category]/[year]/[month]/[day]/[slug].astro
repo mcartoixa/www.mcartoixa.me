@@ -1,5 +1,5 @@
 ---
-import type { ImageMetadata } from 'astro';
+import * as path from 'node:path';
 import { getCollection } from 'astro:content';
 import BlogArticle from '../../../../../../components/Blog/BlogArticle.astro';
 import BlogComments from '../../../../../../components/Blog/BlogComments.astro';
@@ -33,18 +33,14 @@ const links = blogPosts.map(p => ({
   icon: 'fa7-solid:file-pen'
 }));
 
-const images = import.meta.glob<{ default: ImageMetadata }>('/src/data/blog/**/*.{jpg,png}');
-const header = (images[post.data.header] ?? images['/src/data/blog/header-mac.jpg']);
-if (!header) throw new Error(`The header could not be found`);
-const headerSrc = new URL((await header()).default.src, import.meta.env.SITE).toString();
-
+const pathnamePath = path.parse(Astro.url.pathname);
 const metadata = {
   '@context': 'https://schema.org',
   '@type': 'BlogPosting',
-  '@id': `${Astro.url}.html`,
+  '@id': `${Astro.url}`,
   mainEntityOfPage: {
     '@type': 'WebPage',
-    '@id': `${Astro.url}.html`
+    '@id': `${Astro.url}`
   },
   headline: post.data.title,
   name: post.data.title,
@@ -54,10 +50,10 @@ const metadata = {
   author: commonMetadata.person,
   image: {
     '@type': 'ImageObject',
-    '@id': headerSrc,
-    url: headerSrc
+    '@id': `${Astro.url.protocol}//${Astro.url.host}${pathnamePath.dir}/${pathnamePath.name}.png`,
+    url: `${Astro.url.protocol}//${Astro.url.host}${pathnamePath.dir}/${pathnamePath.name}.png`
   },
-  url: `${Astro.url}.html`,
+  url: `${Astro.url}`,
   isPartOf: {
     '@type': 'Blog',
     '@id': `${import.meta.env.SITE}/blog`

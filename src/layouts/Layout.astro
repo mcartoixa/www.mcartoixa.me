@@ -24,7 +24,7 @@ const genericMetadata = {
   headline: title || 'Mathieu Cartoixa',
   name: 'Mathieu Cartoixa',
   image: new URL((await header()).default.src, import.meta.env.SITE).toString(),
-  url: Astro.url.pathname !== '/' ? `${Astro.url}.html` : Astro.url
+  url: Astro.url
 };
 const pageMetadata = [Object.assign({}, genericMetadata)];
 if (metadata) {
@@ -56,8 +56,8 @@ if (metadata) {
     <meta property="og:title" content={title || 'Mathieu Cartoixa'} />
     <meta name="author" content={pageMetadata[0].author.name} />
     <meta property="og:locale" content="en_US" />
-    <link rel="canonical" href={`${Astro.url}.html`} />
-    <meta property="og:url" content={`${Astro.url}.html`} />
+    <link rel="canonical" href={`${Astro.url}`} />
+    <meta property="og:url" content={`${Astro.url}`} />
     <meta property="og:site_name" content="Mathieu Cartoixa" />
     <meta property="og:image" content={pageMetadata[0].image.url} />
     {(pageMetadata.length > 1 && pageMetadata[1]['@type'] === 'BlogPosting') && (

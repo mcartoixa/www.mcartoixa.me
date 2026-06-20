@@ -13,7 +13,10 @@ module.exports = function (grunt) {
       build: ['tmp/']
     },
     env: {
-      prepare: { NODE_ENV: 'production' }
+      prepare: {
+        NODE_ENV: 'production',
+        SKIA_CANVAS_STRICT: 'true'
+      }
     },
     exec: {
       'analyze-eslint': 'eslint .',
