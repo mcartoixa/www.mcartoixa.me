@@ -5,13 +5,13 @@ import * as fs from 'node:fs';
 import * as path from 'node:path';
 import glob from 'fast-glob';
 import { Canvas, FontLibrary, Image } from 'skia-canvas';
-//import { createUri } from '../../../../../../utils/blog.js';
+import { getCategory } from '../../../../../../utils/blog.js';
 
 export async function getStaticPaths() {
   const blogPosts = (await getCollection('blogPosts')).sort((s1, s2) => s2.data.date - s1.data.date);
   return blogPosts.map(post => ({
     params: {
-      category: post.data.category,
+      category: post.data.category.id,
       day: post.data.date.getDate().toString().padStart(2, '0'),
       month: (post.data.date.getMonth() + 1).toString().padStart(2, '0'),
       slug: post.id.split('/').pop()?.substring(11),
@@ -28,6 +28,7 @@ const avatarImageData = Buffer.from(fs.readFileSync('src/assets/pix/avatar.png')
 
 export async function GET(astro) {
   const { post } = astro.props;
+  const category = await getCategory(post);
 
   const canvas = new Canvas(1000, 560);
   canvas.gpu = false;
@@ -42,7 +43,7 @@ export async function GET(astro) {
   /* SVG does not support text formatting like shadows and wrapping, and skia-canvas does not render <foreignobject> tags.
   In the meantime we will have to render long text directly into the canvas. */
   const svgText = `<svg width="1000" height="560" viewBox="0 0 1000 560" xmlns="http://www.w3.org/2000/svg">
-  <text font-family="Source Sans 3" font-size="32" fill="#FFFFFF" x="100" y="58">${post.data.category}</text>
+  <text font-family="Source Sans 3" font-size="32" fill="#FFFFFF" x="100" y="58">${category.data.title}</text>
 </svg>`;
 
   // Images

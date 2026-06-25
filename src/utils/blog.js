@@ -1,4 +1,5 @@
 import { URL } from "url";
+import { getEntry } from "astro:content";
 import MarkdownIt from "markdown-it";
 import replaceLinkPlugin from 'markdown-it-replace-link';;
 import { convert } from "html-to-text";
@@ -32,5 +33,7 @@ export const createHtmlContent = post => {
 };
 
 export const createUri = (post) => {
-  return new URL(`${import.meta.env.SITE}/blog/${post.data.category}/${post.data.date.getFullYear()}/${(post.data.date.getMonth() + 1).toString().padStart(2, '0')}/${post.data.date.getDate().toString().padStart(2, '0')}/${post.id.split('/').pop()?.substring(11)}.html`);
+  return new URL(`${import.meta.env.SITE}/blog/${post.data.category.id}/${post.data.date.getFullYear()}/${(post.data.date.getMonth() + 1).toString().padStart(2, '0')}/${post.data.date.getDate().toString().padStart(2, '0')}/${post.id.split('/').pop()?.substring(11)}.html`);
 }
+
+export const getCategory = (post) => getEntry(post.data.category);

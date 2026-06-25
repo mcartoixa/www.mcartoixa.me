@@ -20,7 +20,11 @@ module.exports = function (grunt) {
     },
     exec: {
       'analyze-astro': 'astro-check --minimumFailingSeverity warning',
-      'analyze-eslint': 'eslint .',
+      'analyze-eslint-json':  {
+        command: 'eslint . --format json --output-file ./tmp/eslint-results.json --cache --cache-location ./.tmp/eslint-cache/',
+        exitCode: [0, 1, 2] // Let the stylish formatter fail on errors
+      },
+      'analyze-eslint-stylish': 'eslint . --format stylish --cache --cache-location ./.tmp/eslint-cache/',
       'analyze-cloc-nix': 'perl .tmp/cloc.pl --3 --progress-rate=0 --xml --exclude-dir=.astro,.tmp,node_modules,tmp --out tmp/cloc-results.xml .',
       'analyze-cloc-win': '.tmp\\cloc.exe --3 --progress-rate=0 --xml --exclude-dir=.astro,.tmp,node_modules,tmp --out tmp\\cloc-results.xml .',
       'compile-astro': 'astro build',
@@ -43,6 +47,10 @@ module.exports = function (grunt) {
       grunt.task.run('exec:analyze-cloc-nix');
     }
   });
+  grunt.registerTask('analyze-eslint', [
+    'exec:analyze-eslint-json',
+    'exec:analyze-eslint-stylish'
+  ]);
 
   grunt.registerTask('package:msdeploy', () => {
     if (process.platform === 'win32') grunt.task.run('exec:package-msdeploy-win');
@@ -50,7 +58,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('analyze', [
     'run-once:prepare',
-    'exec:analyze-eslint',
+    'run-once:analyze-eslint',
     'exec:analyze-astro',
     'analyze:cloc'
   ]);

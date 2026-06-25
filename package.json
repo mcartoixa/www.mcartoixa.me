@@ -17,7 +17,7 @@
     "build:test": "grunt test",
     "check": "astro check",
     "dev": "astro dev",
-    "lint": "eslint .",
+    "lint": "eslint . --cache --cache-location ./.tmp/eslint-cache/",
     "preview": "astro preview"
   },
   "dependencies": {

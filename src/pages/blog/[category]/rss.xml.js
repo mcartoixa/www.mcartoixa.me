@@ -3,7 +3,7 @@ import { getCollection } from 'astro:content';
 import { createUri, createHtmlContent } from '../../../utils/blog.js';
 
 export async function getStaticPaths() {
-  const blogCategories = Array.from(new Set((await getCollection('blogPosts')).map((p) => p.data.category)));
+  const blogCategories = Array.from(new Set((await getCollection('blogPosts')).map((p) => p.data.category.id)));
   return blogCategories.map(category => ({
     params: {
       category: category
@@ -12,7 +12,7 @@ export async function getStaticPaths() {
 }
 
 export async function GET(context) {
-  const blogPosts = (await getCollection('blogPosts', ({ data }) => { return data.category === context.params.category; })).sort((s1, s2) => s2.data.date - s1.data.date);
+  const blogPosts = (await getCollection('blogPosts', ({ data }) => { return data.category.id === context.params.category; })).sort((s1, s2) => s2.data.date - s1.data.date);
   return rss({
     title: 'Mathieu Cartoixa',
     description: "Mathieu Cartoixa's blog",
