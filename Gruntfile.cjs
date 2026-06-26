@@ -30,6 +30,7 @@ module.exports = function (grunt) {
       'compile-astro': 'astro build',
       'package-msdeploy-win': `msdeploy.exe -verb:sync -source:contentPath=${path.resolve('./tmp/bin/dist')} -dest:package=${path.resolve('./tmp/out/bin/package.zip')} -replace:objectName=path,match="${rexcape(path.resolve('./tmp/bin/dist'))}",replace="C:\\inetpub\\<%= package.name %>\\"`,
       'prepare-astro': 'astro sync',
+      'test-vitest': 'vitest run --coverage.enabled=true',
     },
     zip: {
       package: {
@@ -76,7 +77,7 @@ module.exports = function (grunt) {
     'package:msdeploy'
   ]);
   grunt.registerTask('prepare', ['env:prepare', 'exec:prepare-astro']);
-  grunt.registerTask('test', ['run-once:prepare']);
+  grunt.registerTask('test', ['run-once:prepare', 'exec:test-vitest']);
 
   grunt.registerTask('build', ['run-once:analyze', 'run-once:compile', 'run-once:test']);
   grunt.registerTask('rebuild', ['run-once:clean-do', 'run-once:build']);

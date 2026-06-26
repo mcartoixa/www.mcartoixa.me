@@ -28,7 +28,7 @@ Over the years, I have found a handful of rules that have helped our teams get t
 
 ## General principles
 
-[![2026-06-26-afdp1228.jpg](2026-06-26-afdp1228.jpg)](https://adamfairhead.com/p1228/)
+[![2026-06-26-afdp1228.jpg](./2026-06-26-afdp1228.jpg)](https://adamfairhead.com/p1228/)
 
  * The _messaging system_ is essentially an asynchronous communication tool (except for meetings of course 😅).
    * A message **never** expects an immediate response or reaction.
@@ -52,7 +52,7 @@ _Chats_ are by nature communication silos which are only accessible to people wh
 
 In any case, Just remember that _chats_ are asynchronous as well.
 
-![2026-06-26-microsoft-teams-chat.png](2026-06-26-microsoft-teams-chat.png)
+![2026-06-26-microsoft-teams-chat.png](./2026-06-26-microsoft-teams-chat.png)
 
 ## Channel based communication
 
@@ -70,7 +70,7 @@ In any case, Just remember that _chats_ are asynchronous as well.
  * Keep _threads_ focused. Side discussions should be quickly promoted to their own _thread_.
  * Don't keep _threads_ active for too long. Long-running discussions tend to become difficult to follow, and starting a fresh _thread_ can provide a useful reset and summary point. It also shows all the observers the subject is still being discussed.
 
-![2026-06-26-slack-channels.png](2026-06-26-slack-channels.png)
+![2026-06-26-slack-channels.png](./2026-06-26-slack-channels.png)
 
 ### Microsoft Teams specific rules
 Teams requires a few additional conventions because its _channel_ model differs from Slack:
