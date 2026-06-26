@@ -1,6 +1,6 @@
 import { getCollection } from 'astro:content';
 import { Response } from 'node-fetch-native';
-import { createUri, getCategory } from '../../../../../../utils/blog.js';
+import { createUri, getCategory, rewriteMarkdownImageSources } from '../../../../../../utils/blog.js';
 
 export async function getStaticPaths() {
   const blogPosts = (await getCollection('blogPosts')).sort((s1, s2) => s2.data.date - s1.data.date);
@@ -29,7 +29,7 @@ URL: ${createUri(post)}
 Published: ${post.data.date}
 Category: ${category.data.title}
 
-${post.body}
+${rewriteMarkdownImageSources(post.body)}
   `.trim();
 
   return new Response(ret, {

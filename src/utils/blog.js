@@ -5,6 +5,8 @@ import replaceLinkPlugin from 'markdown-it-replace-link';
 import { convert } from "html-to-text";
 import { resolveImageSrc } from "./blog.core.js";
 
+export { rewriteMarkdownImageSources } from "./blog.core.js";
+
 const parser = new MarkdownIt().use(replaceLinkPlugin, {
   processHTML: true,
   replaceLink: (link, _env, token) => resolveImageSrc(link, token)

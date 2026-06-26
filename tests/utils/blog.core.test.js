@@ -1,5 +1,8 @@
 import { describe, it, expect } from "vitest";
-import { resolveImageSrc } from "../../src/utils/blog.core.js";
+import {
+  resolveImageSrc,
+  rewriteMarkdownImageSources,
+} from "../../src/utils/blog.core.js";
 
 const img = { tag: "img" };
 
@@ -42,5 +45,56 @@ describe("resolveImageSrc", () => {
     expect(resolveImageSrc("./2026-03-31-foo.png", undefined)).toBe(
       "./2026-03-31-foo.png"
     );
+  });
+});
+
+describe("rewriteMarkdownImageSources", () => {
+  it("rewrites a relative image source while leaving its alt text intact", () => {
+    expect(rewriteMarkdownImageSources("![the alt](./2026-03-31-foo.png)")).toBe(
+      "![the alt](/assets/images/2026/2026-03-31-foo.png)"
+    );
+  });
+
+  it("rewrites the image but not the surrounding link target", () => {
+    expect(
+      rewriteMarkdownImageSources(
+        "[![afdp1228](2026-06-26-afdp1228.jpg)](https://adamfairhead.com/p1228/)"
+      )
+    ).toBe(
+      "[![afdp1228](/assets/images/2026/2026-06-26-afdp1228.jpg)](https://adamfairhead.com/p1228/)"
+    );
+  });
+
+  it("leaves an absolute image source untouched", () => {
+    const markdown = "![family](https://faasandfurious.com/pages/family-tensions.png)";
+    expect(rewriteMarkdownImageSources(markdown)).toBe(markdown);
+  });
+
+  it("preserves an image title alongside the rewritten source", () => {
+    expect(
+      rewriteMarkdownImageSources('![alt](./2026-03-31-foo.png "a title")')
+    ).toBe('![alt](/assets/images/2026/2026-03-31-foo.png "a title")');
+  });
+
+  it("rewrites every image in a multi-line document", () => {
+    const markdown = [
+      "# Title",
+      "",
+      "![one](./2026-03-31-one.png)",
+      "",
+      "Some prose with a [normal link](./2026-03-31-not-an-image.png).",
+      "",
+      "![two](2026-06-26-two.jpg)",
+    ].join("\n");
+    const expected = [
+      "# Title",
+      "",
+      "![one](/assets/images/2026/2026-03-31-one.png)",
+      "",
+      "Some prose with a [normal link](./2026-03-31-not-an-image.png).",
+      "",
+      "![two](/assets/images/2026/2026-06-26-two.jpg)",
+    ].join("\n");
+    expect(rewriteMarkdownImageSources(markdown)).toBe(expected);
   });
 });
