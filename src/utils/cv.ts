@@ -1,4 +1,7 @@
 import { convert } from 'html-to-text';
+import MarkdownIt from 'markdown-it';
+
+const markdown = new MarkdownIt({ html: true });
 
 /**
  * Formats a date as a `YYYY-MM-DD` string, the format used throughout the CV
@@ -15,7 +18,7 @@ const sanitizeInPlace = (record: Record<string, unknown>, options: Record<string
     if (p instanceof Date) {
       if (formatDates) record[property] = formatDate(p);
     } else if (typeof p === 'string') {
-      record[property] = convert(p, options);
+      record[property] = convert(markdown.renderInline(p), options);
     } else if (typeof p === 'object' && p !== null) {
       sanitizeInPlace(p as Record<string, unknown>, options, formatDates);
     }
@@ -23,11 +26,13 @@ const sanitizeInPlace = (record: Record<string, unknown>, options: Record<string
 };
 
 /**
- * Returns a sanitised deep copy of a résumé-like object: string values are run
- * through html-to-text's `convert` to strip markup, and `Date` values are
- * optionally formatted as `YYYY-MM-DD` strings. Nested objects and arrays are
- * sanitised recursively. The input is never mutated, so the same source object
- * can be sanitised differently by different callers.
+ * Returns a sanitised deep copy of a résumé-like object: string values are
+ * rendered from inline markdown to HTML and then flattened to plain text via
+ * html-to-text (stripping emphasis and the `IconText` wrappers while keeping
+ * link text), and `Date` values are optionally formatted as `YYYY-MM-DD`
+ * strings. Nested objects and arrays are sanitised recursively. The input is
+ * never mutated, so the same source object can be sanitised differently by
+ * different callers.
  *
  * @param value - The object to sanitise.
  * @param options - Options forwarded to html-to-text's `convert`.

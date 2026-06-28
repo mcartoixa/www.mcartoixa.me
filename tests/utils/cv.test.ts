@@ -26,6 +26,27 @@ describe("sanitize", () => {
     expect(sanitize(o).summary).toBe("Hello world");
   });
 
+  it("strips markdown emphasis", () => {
+    const o = { highlight: "I used _Microsoft Teams_ and **Confluence**." };
+    expect(sanitize(o).highlight).toBe("I used Microsoft Teams and Confluence.");
+  });
+
+  it("keeps link text and its URL", () => {
+    const o = { highlight: "I built [GeoSIK](https://github.com/mcartoixa/GeoSIK)." };
+    expect(sanitize(o).highlight).toBe("I built GeoSIK [https://github.com/mcartoixa/GeoSIK].");
+  });
+
+  it("keeps the inner text of IconText components while stripping the wrapper", () => {
+    const o = { keyword: '<IconText name="skill-icons:cs">C#</IconText>' };
+    const options = { selectors: [{ selector: "IconText", format: "inline" }] };
+    expect(sanitize(o, options).keyword).toBe("C#");
+  });
+
+  it("leaves intraword underscores intact", () => {
+    const o = { path: "src/some_nested_module" };
+    expect(sanitize(o).path).toBe("src/some_nested_module");
+  });
+
   it("recurses into nested objects", () => {
     const o = { basics: { name: "<i>Bob</i>" } };
     expect(sanitize(o).basics.name).toBe("Bob");

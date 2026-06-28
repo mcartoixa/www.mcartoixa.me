@@ -17,7 +17,7 @@ export async function GET() {
   const options = {
     wordwrap: null,
     selectors: [
-      { selector: "IconText", format: "skip" },
+      { selector: "IconText", format: "inline" },
     ],
   };
   Object.assign(ret, sanitize(cv, options));
