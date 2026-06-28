@@ -1,8 +1,8 @@
-/**
- * @see https://prettier.io/docs/configuration
- * @type {import("prettier").Config & import('prettier-plugin-tailwindcss').PluginOptions}
- */
-const config = {
+import type { Config } from 'prettier';
+import type { PluginOptions } from 'prettier-plugin-tailwindcss';
+
+// https://prettier.io/docs/configuration
+const config: Config & PluginOptions = {
   arrowParens: 'avoid',
   bracketSameLine: true,
   bracketSpacing: true,

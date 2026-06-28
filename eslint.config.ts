@@ -2,6 +2,7 @@ import { defineConfig } from 'eslint/config';
 import js from '@eslint/js';
 import tseslint from "typescript-eslint";
 import pluginAstro from 'eslint-plugin-astro';
+import * as astroParser from 'astro-eslint-parser';
 
 import { includeIgnoreFile } from '@eslint/config-helpers';
 import { fileURLToPath, URL } from 'node:url';
@@ -16,7 +17,7 @@ export default defineConfig([
   {
     files: ["**/*.astro"],
     languageOptions: {
-      parser: pluginAstro.Parser,
+      parser: astroParser,
       parserOptions: {
         parser: tseslint.parser,
         extraFileExtensions: ['.astro'],

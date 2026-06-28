@@ -3,6 +3,11 @@ const uriSchemeRegex = /^[a-z][a-z0-9+.-]*:/i;
 const relativePrefixRegex = /^\.\//;
 const markdownImageRegex = /(!\[[^\]]*\]\()([^)\s]+)([^)]*\))/g;
 
+/** A markdown-it token, of which only the tag is relevant when rewriting links. */
+export interface MarkdownLinkToken {
+  tag?: string;
+}
+
 /**
  * Rewrites a blog image link to its built location under `/assets/images`.
  *
@@ -10,31 +15,32 @@ const markdownImageRegex = /(!\[[^\]]*\]\()([^)\s]+)([^)]*\))/g;
  * optional `./` prefix and gain a year directory when the file name starts with
  * one, matching how the images are copied (cf. `astro.config.mjs`).
  *
- * @param {string} link - The link as written in the markdown source.
- * @returns {string} The rewritten link, or the original when it is an absolute URL.
+ * @param link - The link as written in the markdown source.
+ * @returns The rewritten link, or the original when it is an absolute URL.
  */
-export const resolveImageLink = (link) => {
+export const resolveImageLink = (link: string): string => {
   if (uriSchemeRegex.test(link)) return link;
   const file = link.replace(relativePrefixRegex, '');
-  return `/assets/images/${dateStartRegex.test(file) ? `${dateStartRegex.exec(file)[1]}/${file}` : file}`;
+  const yearMatch = dateStartRegex.exec(file);
+  return `/assets/images/${yearMatch ? `${yearMatch[1]}/${file}` : file}`;
 };
 
 /**
  * Rewrites a markdown-it link, only when it belongs to an image token.
  *
- * @param {string} link - The link as written in the markdown source.
- * @param {{ tag?: string }} [token] - The markdown-it token for the link; only `img` tokens are rewritten.
- * @returns {string} The rewritten link, or the original when it is not a rewritable image link.
+ * @param link - The link as written in the markdown source.
+ * @param token - The markdown-it token for the link; only `img` tokens are rewritten.
+ * @returns The rewritten link, or the original when it is not a rewritable image link.
  */
-export const resolveImageSrc = (link, token) =>
+export const resolveImageSrc = (link: string, token?: MarkdownLinkToken): string =>
   token?.tag === 'img' ? resolveImageLink(link) : link;
 
 /**
  * Rewrites every image source in a markdown document with {@link resolveImageLink},
  * leaving the surrounding markdown (including link targets) untouched.
  *
- * @param {string} markdown - The raw markdown source.
- * @returns {string} The markdown with image sources rewritten.
+ * @param markdown - The raw markdown source.
+ * @returns The markdown with image sources rewritten.
  */
-export const rewriteMarkdownImageSources = (markdown) =>
+export const rewriteMarkdownImageSources = (markdown: string): string =>
   markdown.replace(markdownImageRegex, (_match, before, link, after) => `${before}${resolveImageLink(link)}${after}`);

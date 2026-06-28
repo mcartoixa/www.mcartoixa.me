@@ -1,22 +1,13 @@
 import { Response } from 'node-fetch-native';
-import { convert } from "html-to-text";
+import type { Cv } from '../../types';
 
 import cv from '../../data/about/cv.yaml';
+import { sanitize, formatDate } from '../../utils/cv.js';
 
-function sanitize(o, options) {
-  for (const property in o) {
-    const p = o[property];
-    if (p instanceof Date) {
-      o[property] = p.toISOString().substring(0, 10);
-    } else if (typeof p === 'string') {
-      o[property] = convert(p, options);
-    } else if (typeof p === 'object') {
-      sanitize(p, options);
-    }
-  }
-  return o;
-}
-
+/**
+ * Serves the CV as a plain-text résumé, rendered from the same source as the
+ * JSON Resume endpoint.
+ */
 export async function GET() {
   const options = {
     wordwrap: null,
@@ -24,7 +15,7 @@ export async function GET() {
       { selector: "IconText", format: "skip" },
     ],
   };
-  const resume = sanitize(cv, options);
+  const resume = sanitize(cv, options, false) as Cv;
 
   const ret = `
 ${resume.basics.name}
@@ -39,7 +30,7 @@ ${resume.work
   .map(
     job => `
 ${job.position} - ${job.name}
-${job.startDate} to ${job.endDate || 'Present'}
+${formatDate(job.startDate)} to ${job.endDate ? formatDate(job.endDate) : 'Present'}
 ${job.summary ?? ''}${job.highlights?.map(h => `• ${h}`).join('\n')}
 `
   )
@@ -50,7 +41,7 @@ ${resume.education
   .map(
     edu => `
 ${edu.studyType}${edu.area ? ` in ${edu.area}` : ''}
-${edu.institution}, ${edu.startDate} - ${edu.endDate}
+${edu.institution}, ${formatDate(edu.startDate)} - ${formatDate(edu.endDate)}
 `
   )
   .join('\n')}

@@ -39,6 +39,7 @@ export interface CvWork {
   position: string;
   startDate: Date;
   endDate?: Date;
+  summary?: string;
   highlights: string[];
 }
 

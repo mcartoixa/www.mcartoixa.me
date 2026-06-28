@@ -1,4 +1,6 @@
+import type { APIContext, GetStaticPaths } from 'astro';
 import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
 import { Response } from 'node-fetch-native';
 import { Buffer } from 'node:buffer';
 import * as fs from 'node:fs';
@@ -7,8 +9,10 @@ import glob from 'fast-glob';
 import { Canvas, FontLibrary, Image } from 'skia-canvas';
 import { getCategory } from '../../../../../../utils/blog.js';
 
-export async function getStaticPaths() {
-  const blogPosts = (await getCollection('blogPosts')).sort((s1, s2) => s2.data.date - s1.data.date);
+type Props = { post: CollectionEntry<'blogPosts'> };
+
+export const getStaticPaths = (async () => {
+  const blogPosts = (await getCollection('blogPosts')).sort((s1, s2) => s2.data.date.getTime() - s1.data.date.getTime());
   return blogPosts.map(post => ({
     params: {
       category: post.data.category.id,
@@ -21,12 +25,19 @@ export async function getStaticPaths() {
       post
     }
   }));
-}
+}) satisfies GetStaticPaths;
 
-FontLibrary.use(glob('node_modules/@fontsource/source-sans-3/files/*.woff'));
+// Register every weight under a single family alias; @fontsource ships one file
+// per weight, otherwise skia-canvas exposes only 400/700 on "Source Sans 3" and
+// the 600 (SemiBold) requests below silently degrade to regular.
+FontLibrary.use('Source Sans 3', glob.sync('node_modules/@fontsource/source-sans-3/files/*.woff'));
 const avatarImageData = Buffer.from(fs.readFileSync('src/assets/pix/avatar.png')).toString('base64');
 
-export async function GET(astro) {
+/**
+ * Renders the Open Graph preview image of a blog post: a banner with the avatar,
+ * post header image, category, date, tags and title.
+ */
+export async function GET(astro: APIContext<Props>) {
   const { post } = astro.props;
   const category = await getCategory(post);
 
@@ -43,7 +54,7 @@ export async function GET(astro) {
   /* SVG does not support text formatting like shadows and wrapping, and skia-canvas does not render <foreignobject> tags.
   In the meantime we will have to render long text directly into the canvas. */
   const svgText = `<svg width="1000" height="560" viewBox="0 0 1000 560" xmlns="http://www.w3.org/2000/svg">
-  <text font-family="Source Sans 3" font-size="32" fill="#FFFFFF" x="100" y="58">${category.data.title}</text>
+  <text font-family="Source Sans 3" font-size="32" fill="#FFFFFF" x="100" y="58">${category?.data.title}</text>
 </svg>`;
 
   // Images
@@ -66,7 +77,7 @@ export async function GET(astro) {
 
   // Text
   ctx.textWrap = true;
-  ctx.font = '400 24px "Source Sans 3"';
+  ctx.font = '500 24px "Source Sans 3"';
   ctx.fillStyle = '#404040';
   ctx.fillText(
     post.data.tags.map(t => `#${t}`).join(' '),
@@ -75,7 +86,7 @@ export async function GET(astro) {
     952
   );
 
-  ctx.font = '600 28px "Source Sans 3"';
+  ctx.font = '700 28px "Source Sans 3"';
   ctx.fillText(
     post.data.date.toLocaleDateString('en-US', { day: 'numeric', month: 'long', year: 'numeric' }),
     24,
@@ -85,17 +96,17 @@ export async function GET(astro) {
 
   ctx.textBaseline = 'top';
   ctx.fillStyle = '#202020';
-  ctx.font = '600 56px "Source Sans 3"';
+  ctx.font = '700 56px "Source Sans 3"';
   ctx.shadowColor = 'rgba(255, 255, 255, 0.9)';
   ctx.shadowBlur = 6;
   ctx.shadowOffsetY = 2;
   const m = ctx.measureText(post.data.title, 952);
-  const last = m.lines.at(-1);
+  const last = m.lines[m.lines.length - 1];
   const blockHeight = last.y + last.height;
   const y = 100 + (300 - blockHeight) / 2;
   ctx.fillText(post.data.title, 24, y, 952);
 
-  const ret = await canvas.toBuffer('png');
+  const ret = new Uint8Array(await canvas.toBuffer('png'));
 
   return new Response(ret, {
     headers: {

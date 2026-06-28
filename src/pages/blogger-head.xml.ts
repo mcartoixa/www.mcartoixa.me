@@ -2,8 +2,12 @@ import { Response } from 'node-fetch-native';
 import { getCollection } from 'astro:content';
 import { createUri } from "../utils/blog.js";
 
+/**
+ * Serves the `<head>` fragment injected into the Blogger template, mapping each
+ * blog post URL to its canonical link.
+ */
 export async function GET() {
-  const blogPosts = (await getCollection('blogPosts')).sort((s1, s2) => s2.data.date - s1.data.date);
+  const blogPosts = (await getCollection('blogPosts')).sort((s1, s2) => s2.data.date.getTime() - s1.data.date.getTime());
   const ret = `<head>
 ${blogPosts.map((post, index) => {
     const postUrl = createUri(post).toString();
