@@ -5,6 +5,12 @@
     "url": "https://bsky.app/profile/mcartoixa.me",
     "username": "mcartoixa.me"
   },
+  "crunchbase": {
+    "name": "Crunchbase",
+    "icon": "cib:crunchbase",
+    "url": "https://www.crunchbase.com/person/mathieu-cartoixa",
+    "username": "mathieu-cartoixa"
+  },
   "dev": {
     "name": "DEV",
     "icon": "fa7-brands:dev",

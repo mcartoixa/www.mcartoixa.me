@@ -65,7 +65,21 @@ const metadata: StructuredData = Object.assign({}, commonMetadata.person, {
     '@type': 'Language',
     name: l.language
   })),
-  sameAs: ['dev', 'github', 'gitlab', 'huggingface', 'linkedin', 'microsoft-learn', 'npm', 'nuget', 'openhub', 'salesforce-trailblazer', 'stackoverflow', 'xing'].map(w => websites[w].url)
+  sameAs: [
+    'crunchbase',
+    'dev',
+    'github',
+    'gitlab',
+    'huggingface',
+    'linkedin',
+    'microsoft-learn',
+    'npm',
+    'nuget',
+    'openhub',
+    'salesforce-trailblazer',
+    'stackoverflow',
+    'xing'
+  ].map(w => websites[w].url)
 });
 metadata.alumniOf.push(...cv.education.map((e) => ({
   '@type': 'OrganizationRole',

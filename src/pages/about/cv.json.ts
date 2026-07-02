@@ -24,12 +24,26 @@ export async function GET() {
 
   if (!ret.basics.profiles) { ret.basics.profiles = []; }
   const knownWebsites = websites as Record<string, Website>;
-  for (const site of ['dev', 'github', 'gitlab', 'huggingface', 'linkedin', 'microsoft-learn', 'npm', 'nuget', 'openhub', 'salesforce-trailblazer', 'stackoverflow', 'xing']) {
+  for (const site of [
+    'crunchbase',
+    'dev',
+    'github',
+    'gitlab',
+    'huggingface',
+    'linkedin',
+    'microsoft-learn',
+    'npm',
+    'nuget',
+    'openhub',
+    'salesforce-trailblazer',
+    'stackoverflow',
+    'xing'
+  ]) {
     ret.basics.profiles.push({
       network: knownWebsites[site].name,
       username: knownWebsites[site].username,
       url: knownWebsites[site].url
-    })
+    });
   }
 
   return new Response(JSON.stringify(ret), {
