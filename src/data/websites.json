@@ -23,6 +23,12 @@
     "url": "https://hub.docker.com/u/mcartoixa",
     "username": "mcartoixa"
   },
+  "f6s": {
+    "name": "F6S",
+    "icon": "fa7-solid:globe-europe",
+    "url": "https://www.f6s.com/mathieu-cartoixa",
+    "username": "mathieu-cartoixa"
+  },
   "facebook": {
     "name": "Facebook",
     "icon": "fa7-brands:facebook",
@@ -147,6 +153,12 @@
     "name": "Untappd",
     "icon": "fa7-brands:untappd",
     "url": "https://untappd.com/user/mcartoixa",
+    "username": "mcartoixa"
+  },
+  "wellfound": {
+    "name": "wellfound",
+    "icon": "simple-icons:wellfound",
+    "url": "https://wellfound.com/u/mcartoixa",
     "username": "mcartoixa"
   },
   "x": {

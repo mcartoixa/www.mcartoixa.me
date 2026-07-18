@@ -27,6 +27,7 @@ export async function GET() {
   for (const site of [
     'crunchbase',
     'dev',
+    'f6s',
     'github',
     'gitlab',
     'huggingface',
@@ -37,6 +38,7 @@ export async function GET() {
     'openhub',
     'salesforce-trailblazer',
     'stackoverflow',
+    'wellfound',
     'xing'
   ]) {
     ret.basics.profiles.push({

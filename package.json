@@ -35,6 +35,7 @@
     "@iconify-json/flagpack": "^1.2.8",
     "@iconify-json/logos": "^1.2.11",
     "@iconify-json/skill-icons": "^1.2.4",
+    "@iconify-json/simple-icons": "^1.2.90",
     "@iconify/icons-logos": "^1.2.36",
     "@rollup/plugin-yaml": "^5.0.0",
     "@tailwindcss/typography": "^0.5.20",
