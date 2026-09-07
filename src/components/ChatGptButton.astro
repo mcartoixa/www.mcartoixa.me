@@ -8,7 +8,7 @@ interface Props extends HTMLAttributes<'span'> {
 }
 
 const { text, question, ...props } = Astro.props;
-let questionUrl = "https://chatgpt.com/?q=".concat(encodeURIComponent(question));
+const questionUrl = "https://chatgpt.com/?q=".concat(encodeURIComponent(question));
 ---
 
 <span {...props}>

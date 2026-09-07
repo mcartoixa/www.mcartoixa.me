@@ -14,10 +14,18 @@ basics:
     city: Paris
     countryCode: FR
 work:
+  - name: UpSlide
+    url: https://upslide.com/
+    location: Paris, France
+    position: Staff Software Engineer
+    startDate: 2026-09-07
+    highlights:
+      - >
+        &nbsp;
   - name: Vocalcom
     url: https://web.archive.org/web/20260520135957/https://www.vocalcom.com/
     location: Courbevoie, France
-    position: Sr Software Engineer
+    position: Senior Software Engineer
     startDate: 2026-02-16
     endDate: 2026-06-15
     highlights:
@@ -33,7 +41,7 @@ work:
   - name: Air Indemnité
     url: https://web.archive.org/web/20250806060656/https://www.air-indemnite.com/
     location: remote, France
-    position: Sr Software Architect, CTO
+    position: CTO
     startDate: 2018-02-05
     endDate: 2025-09-30
     highlights:
@@ -62,7 +70,7 @@ work:
   - name: Isogeo
     url: https://web.archive.org/web/20171213094703/http://www.isogeo.com/
     location: Paris, France
-    position: Sr Software Architect, CTO
+    position: CTO
     startDate: 2011-09-05
     endDate: 2018-01-31
     highlights:
@@ -87,7 +95,7 @@ work:
   - name: KDS
     url: https://web.archive.org/web/20110811045839/http://www.kds.com/
     location: Le Plessis-Robinson, France
-    position: Sr Software Architect
+    position: Senior Software Architect
     startDate: 2009-12-01
     endDate: 2011-08-31
     highlights:
