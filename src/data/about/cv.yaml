@@ -213,20 +213,21 @@ skills:
   - name: SQL
     level: Expert
     keywords:
-      - SQL Server
+      - <IconText name="thesvg-color:microsoft-sql-server">SQL Server</IconText>
       - Oracle
-      - MariaDB
+      - <IconText name="thesvg-color:mariadb">MariaDB</IconText>
       - <IconText name="skill-icons:mysql-light">MySQL</IconText>
       - <IconText name="skill-icons:postgresql-light">PostgreSQL</IconText>
   - name: AI
     level: Proficient
     keywords:
-      - Claude Code
+      - <IconText name="thesvg-color:claude">Claude Code</IconText>
+      - <IconText name="thesvg-color:codex-openai">Codex</IconText>
   - name: Version Control
     level: Master
     keywords:
       - <IconText name="skill-icons:git">Git</IconText>
-      - Subversion
+      - <IconText name="thesvg-color:subversion">Subversion</IconText>
       - CVS
       - Continuus
   - name: Continuous Integration
@@ -234,11 +235,11 @@ skills:
     keywords:
       - <IconText name="skill-icons:githubactions-light">Github Actions</IconText>
       - <IconText name="skill-icons:gitlab-light">GitLab pipelines</IconText>
-      - AppVeyor
-      - Travis
+      - <IconText name="thesvg-color:appveyor">AppVeyor</IconText>
+      - <IconText name="thesvg-color:travis-ci">Travis</IconText>
       - CruiseControl.NET
       - MSBuild
-      - grunt.js
+      - <IconText name="thesvg-color:grunt">grunt.js</IconText>
       - <IconText name="skill-icons:gulp">gulp.js</IconText>
       - Ant
   - name: Cloud
@@ -264,12 +265,12 @@ interests:
       - <IconText name="skill-icons:windows-light">Windows Server</IconText>
       - <IconText name="skill-icons:ubuntu-light">Ubuntu</IconText>
       - OpenCore
-      - Synology
+      - <IconText name="thesvg-color:synology">Synology</IconText>
   - name: Home Automation
     keywords:
-      - Home Assistant
+      - <IconText name="thesvg-color:home-assistant">Home Assistant</IconText>
       - Domoticz
-      - Zigbee
+      - <IconText name="thesvg-color:zigbee">Zigbee</IconText>
       - ZWave
   - name: Music
     keywords:
