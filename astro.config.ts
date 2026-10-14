@@ -14,7 +14,23 @@ export default defineConfig({
     format: 'preserve'
   },
   cacheDir: '.tmp/astro-cache',
-  integrations: [icon(), mdx(), robots(), sitemap()],
+  integrations: [
+    icon(),
+    mdx(),
+    robots(),
+    sitemap({
+      // https://github.com/withastro/astro/issues/15526
+      serialize(item) {
+        if (item.url.endsWith('/blog')) {
+          item.url += '/';
+        }
+        if (!item.url.endsWith('/')) {
+          item.url += '.html';
+        }
+        return item;
+      }
+    })
+  ],
   output: 'static',
   outDir: './tmp/bin/dist',
   site: 'https://www.mcartoixa.me',
