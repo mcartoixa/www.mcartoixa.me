@@ -28,7 +28,7 @@ export async function GET(context: APIContext) {
     items: blogPosts.map(post => ({
       title: post.data.title,
       pubDate: post.data.date,
-      description: `<![CDATA[${createHtmlContent(post)}]]>`,
+      description: `<![CDATA[${createHtmlContent(post)}<img src="https://tinylytics.app/pixel/YTpdtwVFGaXTzYyCjW1Z.gif?path=${createUri(post).pathname}" alt="" width="1" height="1" />]]>`,
       link: createUri(post).toString()
     }))
   });

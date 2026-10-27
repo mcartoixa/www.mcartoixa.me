@@ -10,7 +10,7 @@ export async function GET(context: APIContext) {
   const blogPosts = (await getCollection('blogPosts')).sort((s1, s2) => s2.data.date.getTime() - s1.data.date.getTime());
   return rss({
     title: 'Mathieu Cartoixa',
-    description: 'Mathieu Cartoixa\'s blog',
+    description: "Mathieu Cartoixa's blog",
     site: context.site!,
     xmlns: {
       atom: 'http://www.w3.org/2005/Atom'
@@ -19,7 +19,7 @@ export async function GET(context: APIContext) {
     items: blogPosts.map(post => ({
       title: post.data.title,
       pubDate: post.data.date,
-      description: `${createExcerpt(post).substring(0, 500)}...`,
+      description: `${createExcerpt(post).substring(0, 500)}...<img src="https://tinylytics.app/pixel/YTpdtwVFGaXTzYyCjW1Z.gif?path=${createUri(post).pathname}" alt="" width="1" height="1" />`,
       link: createUri(post).toString()
     }))
   });
