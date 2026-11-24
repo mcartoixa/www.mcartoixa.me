@@ -113,6 +113,12 @@
     "url": "https://openhub.net/accounts/mcartoixa",
     "username": "mcartoixa"
   },
+  "pypi": {
+    "name": "PyPI",
+    "icon": "file-icons:pypi",
+    "url": "https://pypi.org/user/mcartoixa/",
+    "username": "mcartoixa"
+  },
   "reddit": {
     "name": "Reddit",
     "icon": "fa7-brands:reddit",

@@ -36,6 +36,7 @@ export async function GET() {
     'npm',
     'nuget',
     'openhub',
+    'pypi',
     'salesforce-trailblazer',
     'stackoverflow',
     'wellfound',
